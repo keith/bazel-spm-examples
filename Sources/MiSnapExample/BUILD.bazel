@@ -1,0 +1,20 @@
+load("@rules_apple//apple:ios.bzl", "ios_build_test")
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+
+# MiSnap-iOS ships as iOS xcframeworks, so MiSnapExample only configures
+# successfully when targeting iOS.
+swift_library(
+    name = "MiSnapExample",
+    srcs = ["MiSnapExample.swift"],
+    module_name = "MiSnapExample",
+    tags = ["manual"],
+    target_compatible_with = ["@platforms//os:ios"],
+    visibility = ["//visibility:public"],
+    deps = ["@swiftpkg_misnap_ios//:MiSnapCore"],
+)
+
+ios_build_test(
+    name = "ios_build_test",
+    minimum_os_version = "16.0",
+    targets = [":MiSnapExample"],
+)

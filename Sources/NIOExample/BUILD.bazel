@@ -1,0 +1,33 @@
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("@rules_apple//apple:ios.bzl", "ios_build_test")
+load("@rules_apple//apple:macos.bzl", "macos_build_test")
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+
+swift_library(
+    name = "NIOExample",
+    srcs = ["NIOExample.swift"],
+    module_name = "NIOExample",
+    tags = ["manual"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@swiftpkg_swift_nio//:NIOCore",
+        "@swiftpkg_swift_nio//:NIOPosix",
+    ],
+)
+
+ios_build_test(
+    name = "ios_build_test",
+    minimum_os_version = "16.0",
+    targets = [":NIOExample"],
+)
+
+macos_build_test(
+    name = "macos_build_test",
+    minimum_os_version = "13.0",
+    targets = [":NIOExample"],
+)
+
+build_test(
+    name = "build_test",
+    targets = [":NIOExample"],
+)

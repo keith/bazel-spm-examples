@@ -1,0 +1,51 @@
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("@rules_apple//apple:ios.bzl", "ios_build_test")
+load("@rules_apple//apple:macos.bzl", "macos_build_test")
+load("@rules_apple//apple:tvos.bzl", "tvos_build_test")
+load("@rules_apple//apple:visionos.bzl", "visionos_build_test")
+load("@rules_apple//apple:watchos.bzl", "watchos_build_test")
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+
+swift_library(
+    name = "AlgorithmsExample",
+    srcs = ["AlgorithmsExample.swift"],
+    module_name = "AlgorithmsExample",
+    tags = ["manual"],
+    visibility = ["//visibility:public"],
+    deps = ["@swiftpkg_swift_algorithms//:Algorithms"],
+)
+
+ios_build_test(
+    name = "ios_build_test",
+    minimum_os_version = "16.0",
+    targets = [":AlgorithmsExample"],
+)
+
+macos_build_test(
+    name = "macos_build_test",
+    minimum_os_version = "13.0",
+    targets = [":AlgorithmsExample"],
+)
+
+tvos_build_test(
+    name = "tvos_build_test",
+    minimum_os_version = "16.0",
+    targets = [":AlgorithmsExample"],
+)
+
+watchos_build_test(
+    name = "watchos_build_test",
+    minimum_os_version = "9.0",
+    targets = [":AlgorithmsExample"],
+)
+
+visionos_build_test(
+    name = "visionos_build_test",
+    minimum_os_version = "1.0",
+    targets = [":AlgorithmsExample"],
+)
+
+build_test(
+    name = "build_test",
+    targets = [":AlgorithmsExample"],
+)
