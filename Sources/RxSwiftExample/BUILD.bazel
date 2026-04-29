@@ -17,29 +17,34 @@ swift_library(
 ios_build_test(
     name = "ios_build_test",
     minimum_os_version = "16.0",
+    target_compatible_with = ["@build_bazel_apple_support//constraints:apple"],
     targets = [":RxSwiftExample"],
 )
 
 macos_build_test(
     name = "macos_build_test",
     minimum_os_version = "13.0",
+    target_compatible_with = ["@build_bazel_apple_support//constraints:apple"],
     targets = [":RxSwiftExample"],
 )
 
 tvos_build_test(
     name = "tvos_build_test",
     minimum_os_version = "16.0",
+    target_compatible_with = ["@build_bazel_apple_support//constraints:apple"],
     targets = [":RxSwiftExample"],
 )
 
 watchos_build_test(
     name = "watchos_build_test",
     minimum_os_version = "9.0",
+    target_compatible_with = ["@build_bazel_apple_support//constraints:apple"],
     targets = [":RxSwiftExample"],
 )
 
 visionos_build_test(
     name = "visionos_build_test",
     minimum_os_version = "1.0",
+    target_compatible_with = ["@build_bazel_apple_support//constraints:apple"],
     targets = [":RxSwiftExample"],
 )

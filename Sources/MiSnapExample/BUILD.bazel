@@ -16,5 +16,6 @@ swift_library(
 ios_build_test(
     name = "ios_build_test",
     minimum_os_version = "16.0",
+    target_compatible_with = ["@build_bazel_apple_support//constraints:apple"],
     targets = [":MiSnapExample"],
 )
