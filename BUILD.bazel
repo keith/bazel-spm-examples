@@ -1,0 +1,30 @@
+load("@gazelle//:def.bzl", "gazelle", "gazelle_binary")
+load("@rules_swift_package_manager//swiftpkg:defs.bzl", "swift_package_tool")
+
+# gazelle:exclude .build
+# gazelle:exclude .swiftpm
+
+swift_package_tool(
+    name = "update_swift_packages",
+    cmd = "update",
+    package = "Package.swift",
+)
+
+gazelle_binary(
+    name = "gazelle_bin",
+    languages = [
+        "@bazel_skylib_gazelle_plugin//bzl",
+        "@swift_gazelle_plugin//gazelle",
+    ],
+)
+
+gazelle(
+    name = "update_build_files",
+    data = [
+        "@swift_deps_info//:swift_deps_index",
+    ],
+    extra_args = [
+        "-swift_dependency_index=$(location @swift_deps_info//:swift_deps_index)",
+    ],
+    gazelle = ":gazelle_bin",
+)

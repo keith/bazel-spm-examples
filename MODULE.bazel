@@ -1,0 +1,43 @@
+module(
+    name = "bazel_spm_examples",
+    version = "0.0.0",
+)
+
+bazel_dep(name = "apple_support", version = "2.5.4")
+bazel_dep(name = "bazel_skylib", version = "1.9.0")
+bazel_dep(name = "platforms", version = "1.0.0")
+bazel_dep(name = "rules_apple", version = "4.5.3")
+bazel_dep(name = "rules_cc", version = "0.2.18")
+bazel_dep(name = "rules_swift", version = "3.6.1")
+bazel_dep(name = "rules_swift_package_manager", version = "1.15.0")
+
+bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.9.0", dev_dependency = True)
+bazel_dep(name = "gazelle", version = "0.50.0", dev_dependency = True)
+bazel_dep(name = "swift_gazelle_plugin", version = "0.2.2", dev_dependency = True)
+
+swift_deps = use_extension(
+    "@rules_swift_package_manager//:extensions.bzl",
+    "swift_deps",
+)
+swift_deps.from_package(
+    declare_swift_deps_info = True,
+    resolved = "//:Package.resolved",
+    swift = "//:Package.swift",
+)
+use_repo(
+    swift_deps,
+    "swift_deps_info",
+    "swift_package",
+    "swiftpkg_misnap_ios",
+    "swiftpkg_rxswift",
+    "swiftpkg_swift_algorithms",
+    "swiftpkg_swift_argument_parser",
+    "swiftpkg_swift_async_algorithms",
+    "swiftpkg_swift_collections",
+    "swiftpkg_swift_composable_architecture",
+    "swiftpkg_swift_crypto",
+    "swiftpkg_swift_log",
+    "swiftpkg_swift_nio",
+    "swiftpkg_swift_perception",
+    "swiftpkg_swift_syntax",
+)
