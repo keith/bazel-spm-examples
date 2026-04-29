@@ -1,7 +1,8 @@
 common --enable_platform_specific_config
 
 # Make sure we can find swiftc
-build:linux --action_env=PATH --host_action_env=PATH
+build:linux --repo_env=PATH --action_env=PATH --host_action_env=PATH
+build:linux --toolchain_resolution_debug='@@rules_swift+//toolchains:toolchain_type'
 
 build --test_output=errors
 build --verbose_failures
