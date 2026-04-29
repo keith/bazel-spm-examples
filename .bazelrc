@@ -1,5 +1,8 @@
 common --enable_platform_specific_config
 
+# Make sure we can find swiftc
+build:linux --action_env=PATH --host_action_env=PATH
+
 build --test_output=errors
 build --verbose_failures
 
