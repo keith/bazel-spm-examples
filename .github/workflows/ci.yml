@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   macos:
-    name: macOS / Apple platforms
+    name: Apple platforms
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
@@ -28,13 +28,13 @@ jobs:
       - run: bazel test //...
 
   linux:
-    name: Linux / server-side
+    name: Linux
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - uses: swift-actions/setup-swift@v2.4.0
         with:
-          swift-version: "6.3.1"
+          swift-version: "6.2"
       - uses: bazel-contrib/setup-bazel@0.19.0
         with:
           bazelisk-cache: true
