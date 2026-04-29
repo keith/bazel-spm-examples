@@ -1,0 +1,6 @@
+bazel-*
+.build/
+.swiftpm/
+.DS_Store
+user.bazelrc
+tags
