@@ -1,7 +1,6 @@
+build --test_output=errors
 build --verbose_failures
-build --test_output=errors --test_summary=detailed
 
-build --macos_minimum_os=13.0
-build --host_macos_minimum_os=13.0
+build --macos_minimum_os=13.0 --host_macos_minimum_os=13.0
 
 try-import %workspace%/user.bazelrc
