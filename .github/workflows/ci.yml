@@ -40,4 +40,6 @@ jobs:
           bazelisk-cache: true
           disk-cache: ${{ github.workflow }}-linux
           repository-cache: true
+      - run: which swiftc
+      - run: swiftc --version
       - run: bazel test //...
