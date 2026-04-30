@@ -15,6 +15,15 @@ bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.9.0", dev_dependenc
 bazel_dep(name = "gazelle", version = "0.50.0", dev_dependency = True)
 bazel_dep(name = "swift_gazelle_plugin", version = "0.2.2", dev_dependency = True)
 
+single_version_override(
+    module_name = "rules_swift_package_manager",
+    patch_strip = 1,
+    patches = [
+        # https://github.com/cgrindel/rules_swift_package_manager/pull/2246
+        "//:rules_spm.patch",
+    ],
+)
+
 swift_deps = use_extension(
     "@rules_swift_package_manager//:extensions.bzl",
     "swift_deps",
