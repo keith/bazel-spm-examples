@@ -1,5 +1,17 @@
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 load("@gazelle//:def.bzl", "gazelle", "gazelle_binary")
 load("@rules_swift_package_manager//swiftpkg:defs.bzl", "swift_package_tool")
+
+bool_flag(
+    name = "apple_build_tests",
+    build_setting_default = True,
+)
+
+config_setting(
+    name = "apple_build_tests_enabled",
+    flag_values = {":apple_build_tests": "True"},
+    visibility = ["//visibility:public"],
+)
 
 # gazelle:exclude .build
 # gazelle:exclude .swiftpm
