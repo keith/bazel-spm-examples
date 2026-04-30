@@ -1,9 +1,5 @@
-load("@rules_apple//apple:ios.bzl", "ios_build_test")
-load("@rules_apple//apple:macos.bzl", "macos_build_test")
-load("@rules_apple//apple:tvos.bzl", "tvos_build_test")
-load("@rules_apple//apple:visionos.bzl", "visionos_build_test")
-load("@rules_apple//apple:watchos.bzl", "watchos_build_test")
 load("@rules_swift//swift:swift_library.bzl", "swift_library")
+load("//:apple_build_tests.bzl", "apple_build_tests")
 
 swift_library(
     name = "PerceptionExample",
@@ -14,37 +10,4 @@ swift_library(
     deps = ["@swiftpkg_swift_perception//:Perception"],
 )
 
-ios_build_test(
-    name = "ios_build_test",
-    minimum_os_version = "16.0",
-    target_compatible_with = ["@apple_support//constraints:apple"],
-    targets = [":PerceptionExample"],
-)
-
-macos_build_test(
-    name = "macos_build_test",
-    minimum_os_version = "13.0",
-    target_compatible_with = ["@apple_support//constraints:apple"],
-    targets = [":PerceptionExample"],
-)
-
-tvos_build_test(
-    name = "tvos_build_test",
-    minimum_os_version = "16.0",
-    target_compatible_with = ["@apple_support//constraints:apple"],
-    targets = [":PerceptionExample"],
-)
-
-watchos_build_test(
-    name = "watchos_build_test",
-    minimum_os_version = "9.0",
-    target_compatible_with = ["@apple_support//constraints:apple"],
-    targets = [":PerceptionExample"],
-)
-
-visionos_build_test(
-    name = "visionos_build_test",
-    minimum_os_version = "1.0",
-    target_compatible_with = ["@apple_support//constraints:apple"],
-    targets = [":PerceptionExample"],
-)
+apple_build_tests(targets = [":PerceptionExample"])
