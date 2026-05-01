@@ -18,6 +18,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-perception", from: "1.3.0"),
 
         .package(url: "https://github.com/braintree/braintree_ios", from: "7.5.0"),
+        .package(url: "https://github.com/google/GoogleAppMeasurement", from: "12.12.0"),
         .package(url: "https://github.com/Mitek-Systems/MiSnap-iOS", from: "5.9.0"),
         .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.7.0"),
     ]

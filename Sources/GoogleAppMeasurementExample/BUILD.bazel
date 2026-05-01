@@ -1,0 +1,17 @@
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+load("//:apple_build_tests.bzl", "apple_build_tests")
+
+swift_library(
+    name = "GoogleAppMeasurementExample",
+    srcs = ["GoogleAppMeasurementExample.swift"],
+    module_name = "GoogleAppMeasurementExample",
+    tags = ["manual"],
+    visibility = ["//visibility:public"],
+    deps = ["@swiftpkg_googleappmeasurement//:GoogleAppMeasurementIdentitySupport"],
+)
+
+# GoogleAppMeasurement does not support visionOS.
+apple_build_tests(
+    exclude = ["visionos"],
+    targets = [":GoogleAppMeasurementExample"],
+)
