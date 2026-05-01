@@ -17,6 +17,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.15.0"),
         .package(url: "https://github.com/pointfreeco/swift-perception", from: "1.3.0"),
 
+        .package(url: "https://github.com/Alamofire/Alamofire", from: "5.11.0"),
         .package(url: "https://github.com/braintree/braintree_ios", from: "7.5.0"),
         .package(url: "https://github.com/Mitek-Systems/MiSnap-iOS", from: "5.9.0"),
         .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.7.0"),
