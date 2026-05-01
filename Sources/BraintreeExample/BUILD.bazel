@@ -1,26 +1,22 @@
-load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("@rules_swift//swift:swift_library.bzl", "swift_library")
 load("//:apple_build_tests.bzl", "apple_build_tests")
 
 swift_library(
-    name = "NIOExample",
-    srcs = ["NIOExample.swift"],
-    module_name = "NIOExample",
+    name = "BraintreeExample",
+    srcs = ["BraintreeExample.swift"],
+    module_name = "BraintreeExample",
     tags = ["manual"],
+    target_compatible_with = ["@platforms//os:ios"],
     visibility = ["//visibility:public"],
-    deps = ["@swiftpkg_swift_nio//:NIOPosix"],
+    deps = ["@swiftpkg_braintree_ios//:BraintreeCard"],
 )
 
 apple_build_tests(
     exclude = [
+        "macos",
         "tvos",
         "watchos",
         "visionos",
     ],
-    targets = [":NIOExample"],
-)
-
-build_test(
-    name = "build_test",
-    targets = [":NIOExample"],
+    targets = [":BraintreeExample"],
 )

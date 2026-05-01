@@ -7,7 +7,7 @@ swift_library(
     module_name = "RxSwiftExample",
     tags = ["manual"],
     visibility = ["//visibility:public"],
-    deps = ["@swiftpkg_rxswift//:RxSwift"],
+    deps = ["@swiftpkg_rxswift//:RxSwift-Dynamic"],
 )
 
 apple_build_tests(targets = [":RxSwiftExample"])

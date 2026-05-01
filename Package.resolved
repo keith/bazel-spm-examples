@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "braintree_ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/braintree/braintree_ios",
+      "state" : {
+        "revision" : "b285ce6f3a9ca684efc40f00d6be8f86a417216b",
+        "version" : "7.5.0"
+      }
+    },
+    {
       "identity" : "combine-schedulers",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/combine-schedulers",
