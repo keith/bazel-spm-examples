@@ -24,6 +24,10 @@ single_version_override(
     ],
 )
 
+system_sdk = use_extension("@rules_swift//swift:extensions.bzl", "system_sdk")
+system_sdk.configure_sdks(include_all = True)
+use_repo(system_sdk, "system_sdk")
+
 swift_deps = use_extension(
     "@rules_swift_package_manager//:extensions.bzl",
     "swift_deps",
