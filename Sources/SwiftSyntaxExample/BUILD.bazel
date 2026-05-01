@@ -8,15 +8,16 @@ swift_library(
     module_name = "SwiftSyntaxExample",
     tags = ["manual"],
     visibility = ["//visibility:public"],
-    deps = [
-        "@swiftpkg_swift_syntax//:SwiftParser",
-        "@swiftpkg_swift_syntax//:SwiftSyntax",
-    ],
+    deps = ["@swiftpkg_swift_syntax//:SwiftParser"],
 )
 
 apple_build_tests(
+    exclude = [
+        "tvos",
+        "watchos",
+        "visionos",
+    ],
     targets = [":SwiftSyntaxExample"],
-    exclude = ["tvos", "watchos", "visionos"],
 )
 
 build_test(
