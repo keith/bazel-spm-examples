@@ -10,4 +10,7 @@ build --verbose_failures
 
 build --macos_minimum_os=13.0 --host_macos_minimum_os=13.0
 
+build:explicit-modules --features=swift.use_c_modules --features=swift.emit_c_module --features=swift.use_explicit_swift_module_map
+build:explicit-modules --host_features=swift.use_c_modules --host_features=swift.emit_c_module --host_features=swift.use_explicit_swift_module_map
+
 try-import %workspace%/user.bazelrc
