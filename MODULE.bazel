@@ -52,3 +52,12 @@ use_repo(
     "swiftpkg_swift_perception",
     "swiftpkg_swift_syntax",
 )
+
+archive_override(
+    module_name = "rules_apple",
+    integrity = "sha256-GOdxaF8xg4/tUSnBeWWGI/qHguqmaCJ2IPFzt/1tTlk=",
+    strip_prefix = "rules_apple-78ae0928dc9e1ab791408d88943c983bb38382b6",
+    urls = [
+        "https://github.com/bazelbuild/rules_apple/archive/78ae0928dc9e1ab791408d88943c983bb38382b6.tar.gz",
+    ],
+)
