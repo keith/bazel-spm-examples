@@ -1,0 +1,14 @@
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+
+# Compile the library from source with library evolution + swiftinterface
+# emission. Lives in its own subpackage so its Library.swiftmodule output path
+# does not collide with the sibling swift_import's interface-derived
+# Library.swiftmodule.
+swift_library(
+    name = "Library_impl",
+    srcs = ["Library.swift"],
+    library_evolution = True,
+    module_name = "Library",
+    tags = ["manual"],
+    visibility = ["//Sources/EvolvedInterfaceRepro:__pkg__"],
+)
