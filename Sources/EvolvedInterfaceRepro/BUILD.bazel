@@ -1,0 +1,55 @@
+load("@rules_swift//swift:swift_binary.bzl", "swift_binary")
+load("@rules_swift//swift:swift_import.bzl", "swift_import")
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+load(":swift_evolved_outputs.bzl", "swift_evolved_outputs")
+
+# 1. Compile the library from source with library evolution + swiftinterface
+#    emission. This is what RxCocoa.xcframework would have shipped.
+swift_library(
+    name = "Library_impl",
+    srcs = ["Library.swift"],
+    library_evolution = True,
+    module_name = "Library",
+    tags = ["manual"],
+)
+
+# 2. Surface the .swiftinterface and .a out of the swift_library so we can
+#    feed them back into a swift_import.
+swift_evolved_outputs(
+    name = "Library_outputs",
+    tags = ["manual"],
+    target = ":Library_impl",
+)
+
+filegroup(
+    name = "Library_swiftinterface",
+    srcs = [":Library_outputs"],
+    output_group = "swiftinterface",
+    tags = ["manual"],
+)
+
+filegroup(
+    name = "Library_archives",
+    srcs = [":Library_outputs"],
+    output_group = "archives",
+    tags = ["manual"],
+)
+
+# 3. swift_import forces every consumer to recompile against the textual
+#    .swiftinterface (discard the .swiftmodule)
+swift_import(
+    name = "Library",
+    archives = [":Library_archives"],
+    module_name = "Library",
+    swiftinterface = ":Library_swiftinterface",
+    tags = ["manual"],
+)
+
+# 4. Subclass + super.init(parentObject:delegateProxy:) is the consumer site
+#    that emits the offending generic mangling. swift_binary forces a real
+#    Mach-O link; the link is where the missing symbol shows up.
+swift_binary(
+    name = "EvolvedInterfaceReproTool",
+    srcs = ["main.swift"],
+    deps = [":Library"],
+)
