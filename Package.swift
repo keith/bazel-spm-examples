@@ -21,5 +21,6 @@ let package = Package(
         .package(url: "https://github.com/braintree/braintree_ios", from: "7.5.0"),
         .package(url: "https://github.com/Mitek-Systems/MiSnap-iOS", from: "5.9.0"),
         .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.7.0"),
+        .package(url: "https://github.com/square/Aardvark", from: "5.1.0"),
     ]
 )

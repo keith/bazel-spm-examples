@@ -67,6 +67,7 @@ use_repo(
     swift_deps,
     "swift_deps_info",
     "swift_package",
+    "swiftpkg_aardvark",
     "swiftpkg_alamofire",
     "swiftpkg_braintree_ios",
     "swiftpkg_misnap_ios",
