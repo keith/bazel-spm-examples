@@ -2,7 +2,6 @@ common --enable_platform_specific_config
 
 # Make sure PCM warnings are treated as errors
 build --@rules_swift//swift:copt=-Xcc --@rules_swift//swift:copt=-Werror
-build --features=swift.treat_warnings_as_errors
 build --features=treat_warnings_as_errors
 
 # Make sure we can find swiftc
