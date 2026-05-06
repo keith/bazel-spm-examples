@@ -28,6 +28,41 @@ swift_deps.from_package(
     resolved = "//:Package.resolved",
     swift = "//:Package.swift",
 )
+swift_deps.configure_package(
+    name = "swiftpkg_misnap_ios",
+    target_deps = {
+        "MiSnap.rspm.__impl": [
+            ":MiSnapCamera.rspm",
+            ":MiSnapCore.rspm",
+            ":MiSnapScience.rspm",
+        ],
+        "MiSnapFacialCapture.rspm.__impl": [":MiSnapCore.rspm"],
+        "MiSnapFacialCaptureUX.rspm.__impl": [
+            ":MiSnapAssetManager.rspm",
+            ":MiSnapCore.rspm",
+            ":MiSnapFacialCapture.rspm",
+        ],
+        "MiSnapNFC.rspm.__impl": [":MiSnapCore.rspm"],
+        "MiSnapNFCUX.rspm.__impl": [
+            ":MiSnapAssetManager.rspm",
+            ":MiSnapCore.rspm",
+            ":MiSnapNFC.rspm",
+        ],
+        "MiSnapUX.rspm.__impl": [
+            ":MiSnap.rspm",
+            ":MiSnapAssetManager.rspm",
+            ":MiSnapCamera.rspm",
+            ":MiSnapCore.rspm",
+            ":MiSnapScience.rspm",
+        ],
+        "MiSnapVoiceCapture.rspm.__impl": [":MiSnapCore.rspm"],
+        "MiSnapVoiceCaptureUX.rspm.__impl": [
+            ":MiSnapAssetManager.rspm",
+            ":MiSnapCore.rspm",
+            ":MiSnapVoiceCapture.rspm",
+        ],
+    },
+)
 use_repo(
     swift_deps,
     "swift_deps_info",
