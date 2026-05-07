@@ -31,35 +31,35 @@ swift_deps.from_package(
 swift_deps.configure_package(
     name = "swiftpkg_misnap_ios",
     target_deps = {
-        "MiSnap.rspm.__impl": [
-            ":MiSnapCamera.rspm",
-            ":MiSnapCore.rspm",
-            ":MiSnapScience.rspm",
+        "MiSnap": [
+            ":MiSnapCamera",
+            ":MiSnapCore",
+            ":MiSnapScience",
         ],
-        "MiSnapFacialCapture.rspm.__impl": [":MiSnapCore.rspm"],
-        "MiSnapFacialCaptureUX.rspm.__impl": [
-            ":MiSnapAssetManager.rspm",
-            ":MiSnapCore.rspm",
-            ":MiSnapFacialCapture.rspm",
+        "MiSnapFacialCapture": [":MiSnapCore"],
+        "MiSnapFacialCaptureUX": [
+            ":MiSnapAssetManager",
+            ":MiSnapCore",
+            ":MiSnapFacialCapture",
         ],
-        "MiSnapNFC.rspm.__impl": [":MiSnapCore.rspm"],
-        "MiSnapNFCUX.rspm.__impl": [
-            ":MiSnapAssetManager.rspm",
-            ":MiSnapCore.rspm",
-            ":MiSnapNFC.rspm",
+        "MiSnapNFC": [":MiSnapCore"],
+        "MiSnapNFCUX": [
+            ":MiSnapAssetManager",
+            ":MiSnapCore",
+            ":MiSnapNFC",
         ],
-        "MiSnapUX.rspm.__impl": [
-            ":MiSnap.rspm",
-            ":MiSnapAssetManager.rspm",
-            ":MiSnapCamera.rspm",
-            ":MiSnapCore.rspm",
-            ":MiSnapScience.rspm",
+        "MiSnapUX": [
+            ":MiSnap",
+            ":MiSnapAssetManager",
+            ":MiSnapCamera",
+            ":MiSnapCore",
+            ":MiSnapScience",
         ],
-        "MiSnapVoiceCapture.rspm.__impl": [":MiSnapCore.rspm"],
-        "MiSnapVoiceCaptureUX.rspm.__impl": [
-            ":MiSnapAssetManager.rspm",
-            ":MiSnapCore.rspm",
-            ":MiSnapVoiceCapture.rspm",
+        "MiSnapVoiceCapture": [":MiSnapCore"],
+        "MiSnapVoiceCaptureUX": [
+            ":MiSnapAssetManager",
+            ":MiSnapCore",
+            ":MiSnapVoiceCapture",
         ],
     },
 )
