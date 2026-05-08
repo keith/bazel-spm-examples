@@ -9,20 +9,11 @@ bazel_dep(name = "platforms", version = "1.0.0")
 bazel_dep(name = "rules_apple", version = "4.5.3")
 bazel_dep(name = "rules_cc", version = "0.2.18")
 bazel_dep(name = "rules_swift", version = "3.6.1")
-bazel_dep(name = "rules_swift_package_manager", version = "1.16.1")
+bazel_dep(name = "rules_swift_package_manager", version = "1.17.0")
 
 bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.9.0", dev_dependency = True)
 bazel_dep(name = "gazelle", version = "0.50.0", dev_dependency = True)
 bazel_dep(name = "swift_gazelle_plugin", version = "0.2.2", dev_dependency = True)
-
-single_version_override(
-    module_name = "rules_swift_package_manager",
-    patch_strip = 1,
-    patches = [
-        # https://github.com/cgrindel/rules_swift_package_manager/pull/2246
-        "//:rules_spm.patch",
-    ],
-)
 
 system_sdk = use_extension("@rules_swift//swift:extensions.bzl", "system_sdk")
 system_sdk.configure_sdks(include_all = True)
