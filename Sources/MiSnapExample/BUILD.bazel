@@ -20,5 +20,6 @@ apple_build_tests(
         "watchos",
         "visionos",
     ],
+    tags = ["manual"],
     targets = [":MiSnapExample"],
 )

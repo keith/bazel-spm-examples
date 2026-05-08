@@ -14,7 +14,7 @@ _PLATFORMS = [
     ("visionos", visionos_build_test, "1.0"),
 ]
 
-def apple_build_tests(targets, exclude = []):
+def apple_build_tests(targets, tags = [], exclude = []):
     for platform, rule, min_os in _PLATFORMS:
         if platform in exclude:
             continue
@@ -27,4 +27,5 @@ def apple_build_tests(targets, exclude = []):
             }),
             exec_compatible_with = ["@platforms//os:macos"],
             targets = targets,
+            tags = tags,
         )
