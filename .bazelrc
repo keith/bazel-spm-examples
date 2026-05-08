@@ -4,6 +4,9 @@ common --enable_platform_specific_config
 build --@rules_swift//swift:copt=-Xcc --@rules_swift//swift:copt=-Werror
 build --features=treat_warnings_as_errors
 
+# Build perf for SwiftSyntax, shouldn't affect other things
+build --@rules_swift//swift:copt=-wmo --@rules_swift//swift:exec_copt=-wmo
+
 # Make sure we can find swiftc
 build:linux --repo_env=PATH --action_env=PATH --host_action_env=PATH
 build:linux --repo_env=CC=clang
