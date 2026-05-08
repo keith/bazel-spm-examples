@@ -1,0 +1,54 @@
+load("@rules_swift//swift:swift_import.bzl", "swift_import")
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+load("//:apple_build_tests.bzl", "apple_build_tests")
+load(":split_swift_outputs.bzl", "split_swift_outputs")
+
+split_swift_outputs(
+    name = "GTMAppAuth_outputs",
+    module_name = "GTMAppAuth",
+    tags = ["manual"],
+    target = "@swiftpkg_gtmappauth//:GTMAppAuth",
+)
+
+filegroup(
+    name = "GTMAppAuth_swiftinterface",
+    srcs = [":GTMAppAuth_outputs"],
+    output_group = "swiftinterface",
+    tags = ["manual"],
+)
+
+filegroup(
+    name = "GTMAppAuth_archives",
+    srcs = [":GTMAppAuth_outputs"],
+    output_group = "archives",
+    tags = ["manual"],
+)
+
+swift_import(
+    name = "GTMAppAuth",
+    archives = [":GTMAppAuth_archives"],
+    module_name = "GTMAppAuth",
+    swiftinterface = ":GTMAppAuth_swiftinterface",
+    tags = ["manual"],
+    # Recompiling the .swiftinterface needs the modules it imports
+    # (`AppAuthCore`, `GTMSessionFetcherCore`) on the search path. These come
+    # from the original GTMAppAuth swift_library's deps.
+    deps = [
+        "@swiftpkg_appauth_ios//:AppAuthCore",
+        "@swiftpkg_gtm_session_fetcher//:GTMSessionFetcherCore",
+    ],
+)
+
+swift_library(
+    name = "GTMAppAuthExample",
+    srcs = ["GTMAppAuthExample.swift"],
+    module_name = "GTMAppAuthExample",
+    tags = ["manual"],
+    visibility = ["//visibility:public"],
+    deps = [":GTMAppAuth"],
+)
+
+apple_build_tests(
+    exclude = ["visionos"],
+    targets = [":GTMAppAuthExample"],
+)
