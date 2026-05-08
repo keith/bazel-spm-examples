@@ -29,7 +29,7 @@ jobs:
           repository-cache: true
       - run: xcrun swift --version
       - run: bazel build //Sources/AsyncAlgorithmsExample:tvos_build_test || true
-      - run: find $(bazel info output_base)/execroot -name "InternalCollectionsUtilities.swiftmodule-0.params" -print -exec cat {} \;
+      - run: find $(bazel info output_base)/external -path "*swiftpkg_swift_collections/BUILD.bazel" -print -exec grep -A 40 'name = "InternalCollectionsUtilities.rspm.__impl"' {} \;
       - run: bazel test //...
 
   macos-explicit-modules:
