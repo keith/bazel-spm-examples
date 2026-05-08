@@ -27,6 +27,9 @@ jobs:
           bazelisk-cache: true
           disk-cache: ${{ github.workflow }}-macos
           repository-cache: true
+      - run: xcrun swift --version
+      - run: bazel build //Sources/AsyncAlgorithmsExample:tvos_build_test || true
+      - run: find $(bazel info output_base)/execroot -name "InternalCollectionsUtilities.swiftmodule-0.params" -print -exec cat {} \;
       - run: bazel test //...
 
   macos-explicit-modules:
