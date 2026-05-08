@@ -24,7 +24,7 @@ jobs:
       - uses: bazel-contrib/setup-bazel@0.19.0
         with:
           bazelisk-cache: true
-          disk-cache: ${{ github.workflow }}-macos-26-xcode-26.4.1
+          disk-cache: ${{ github.workflow }}-macos
           repository-cache: true
       - run: bazel test //...
 
@@ -37,7 +37,7 @@ jobs:
       - uses: bazel-contrib/setup-bazel@0.19.0
         with:
           bazelisk-cache: true
-          disk-cache: ${{ github.workflow }}-macos-26-xcode-26.4.1-explicit-modules
+          disk-cache: ${{ github.workflow }}-macos-explicit-modules
           repository-cache: true
       - run: bazel test --config=explicit-modules //...
 
