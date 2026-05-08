@@ -26,14 +26,7 @@ jobs:
         with:
           bazelisk-cache: true
           disk-cache: ${{ github.workflow }}-macos
-          repository-cache: true
-      - run: xcrun swift --version
-      - run: bazel build //Sources/AsyncAlgorithmsExample:tvos_build_test || true
-      - run: |
-          ls -la ~/.bazel/external/ | grep swift_collections || true
-          BUILD_FILE=~/.bazel/external/rules_swift_package_manager++swift_deps+swiftpkg_swift_collections/BUILD.bazel
-          echo "==BUILD FILE PATH=="; ls -la $BUILD_FILE
-          echo "==FEATURES=="; grep -A 30 'name = "InternalCollectionsUtilities.rspm.__impl"' $BUILD_FILE | head -40
+          repository-cache: false
       - run: bazel test //...
 
   macos-explicit-modules:
@@ -47,7 +40,7 @@ jobs:
         with:
           bazelisk-cache: true
           disk-cache: ${{ github.workflow }}-macos-explicit-modules
-          repository-cache: true
+          repository-cache: false
       - run: bazel test --config=explicit-modules //...
 
   linux:
