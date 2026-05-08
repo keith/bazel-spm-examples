@@ -14,6 +14,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  BUILDBUDDY_API_KEY: ${{ secrets.BUILDBUDDY_API_KEY }}
+
 jobs:
   macos:
     name: Apple platforms
@@ -27,7 +30,7 @@ jobs:
           bazelisk-cache: true
           disk-cache: ${{ github.workflow }}-macos
           repository-cache: false
-      - run: bazel test //...
+      - run: bazel test --config=buildbuddy ${BUILDBUDDY_API_KEY:+--remote_header=x-buildbuddy-api-key=$BUILDBUDDY_API_KEY} //...
 
   macos-explicit-modules:
     name: Apple platforms (explicit modules)
@@ -41,7 +44,7 @@ jobs:
           bazelisk-cache: true
           disk-cache: ${{ github.workflow }}-macos-explicit-modules
           repository-cache: false
-      - run: bazel test --config=explicit-modules //...
+      - run: bazel test --config=explicit-modules --config=buildbuddy ${BUILDBUDDY_API_KEY:+--remote_header=x-buildbuddy-api-key=$BUILDBUDDY_API_KEY} //...
 
   linux:
     name: Linux
@@ -58,7 +61,7 @@ jobs:
           repository-cache: true
       - run: which swiftc
       - run: swiftc --version
-      - run: bazel test //...
+      - run: bazel test --config=buildbuddy ${BUILDBUDDY_API_KEY:+--remote_header=x-buildbuddy-api-key=$BUILDBUDDY_API_KEY} //...
 
   # linux-explicit-modules:
   #   name: Linux (explicit modules)
