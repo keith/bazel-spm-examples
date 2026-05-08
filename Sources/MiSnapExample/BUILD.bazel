@@ -10,7 +10,18 @@ swift_library(
     tags = ["manual"],
     target_compatible_with = ["@platforms//os:ios"],
     visibility = ["//visibility:public"],
-    deps = ["@swiftpkg_misnap_ios//:MiSnapCore"],
+    deps = [
+        "@swiftpkg_misnap_ios//:MiSnap",
+        "@swiftpkg_misnap_ios//:MiSnapCore",
+        "@swiftpkg_misnap_ios//:MiSnapFacialCapture",
+        "@swiftpkg_misnap_ios//:MiSnapFacialCaptureUX",
+        "@swiftpkg_misnap_ios//:MiSnapIAD",
+        "@swiftpkg_misnap_ios//:MiSnapNFC",
+        "@swiftpkg_misnap_ios//:MiSnapNFCUX",
+        "@swiftpkg_misnap_ios//:MiSnapUX",
+        "@swiftpkg_misnap_ios//:MiSnapVoiceCapture",
+        "@swiftpkg_misnap_ios//:MiSnapVoiceCaptureUX",
+    ],
 )
 
 apple_build_tests(
