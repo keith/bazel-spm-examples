@@ -19,7 +19,10 @@ let package = Package(
 
         .package(url: "https://github.com/Alamofire/Alamofire", from: "5.11.0"),
         .package(url: "https://github.com/braintree/braintree_ios", from: "7.5.0"),
+        .package(url: "https://github.com/google/gtm-session-fetcher", from: "3.5.0"),
+        .package(url: "https://github.com/google/GTMAppAuth", from: "5.0.0"),
         .package(url: "https://github.com/Mitek-Systems/MiSnap-iOS", from: "5.9.0"),
+        .package(url: "https://github.com/openid/AppAuth-iOS", from: "2.0.0"),
         .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.7.0"),
     ]
 )
