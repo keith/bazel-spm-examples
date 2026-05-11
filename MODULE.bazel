@@ -89,18 +89,18 @@ use_repo(
 
 archive_override(
     module_name = "rules_apple",
-    integrity = "sha256-GOdxaF8xg4/tUSnBeWWGI/qHguqmaCJ2IPFzt/1tTlk=",
-    strip_prefix = "rules_apple-78ae0928dc9e1ab791408d88943c983bb38382b6",
+    integrity = "sha256-TP2VlHdJV4wBEutZ/o4vD72RkbIjcVV0JnycHfsxJWQ=",
+    strip_prefix = "rules_apple-0167be41b3aa9a11307792cb3a86f6a4b3ad121f",
     urls = [
-        "https://github.com/bazelbuild/rules_apple/archive/78ae0928dc9e1ab791408d88943c983bb38382b6.tar.gz",
+        "https://github.com/bazelbuild/rules_apple/archive/0167be41b3aa9a11307792cb3a86f6a4b3ad121f.tar.gz",
     ],
 )
 
 archive_override(
     module_name = "rules_swift",
-    integrity = "sha256-M0gCltjyDmqFo6FK3/mS++bkBOGHZaxMA8NyNN/XK/c=",
-    strip_prefix = "rules_swift-016ee952813f6c587ca12efa6e028cffa4991834",
+    integrity = "sha256-5LpHUm2IhX/rBk0K803yvCt45oJNAskYaAN/FGlY0tM=",
+    strip_prefix = "rules_swift-f256642343c7f74e9d90ae4514fc1269f5282a13",
     urls = [
-        "https://github.com/bazelbuild/rules_swift/archive/016ee952813f6c587ca12efa6e028cffa4991834.tar.gz",
+        "https://github.com/bazelbuild/rules_swift/archive/f256642343c7f74e9d90ae4514fc1269f5282a13.tar.gz",
     ],
 )
