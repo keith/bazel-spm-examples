@@ -24,5 +24,6 @@ let package = Package(
         .package(url: "https://github.com/Mitek-Systems/MiSnap-iOS", from: "5.9.0"),
         .package(url: "https://github.com/openid/AppAuth-iOS", from: "2.0.0"),
         .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.7.0"),
+        .package(url: "https://github.com/square/Aardvark", from: "5.1.0"),
     ]
 )

@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "aardvark",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/square/Aardvark",
+      "state" : {
+        "revision" : "f0c56422c60d4c95d3a81c2aa7893e223708915c",
+        "version" : "5.4.0"
+      }
+    },
+    {
       "identity" : "alamofire",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire",
