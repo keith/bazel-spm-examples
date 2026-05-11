@@ -89,10 +89,10 @@ use_repo(
 
 archive_override(
     module_name = "rules_apple",
-    integrity = "sha256-TP2VlHdJV4wBEutZ/o4vD72RkbIjcVV0JnycHfsxJWQ=",
-    strip_prefix = "rules_apple-0167be41b3aa9a11307792cb3a86f6a4b3ad121f",
+    integrity = "sha256-RK8CRqJpfo//xXKHlngxSrNVEKDMsWlXxJMv4MmyzJQ=",
+    strip_prefix = "rules_apple-6445f144fa921625b02241c7597da98ec58a62d8",
     urls = [
-        "https://github.com/bazelbuild/rules_apple/archive/0167be41b3aa9a11307792cb3a86f6a4b3ad121f.tar.gz",
+        "https://github.com/bazelbuild/rules_apple/archive/6445f144fa921625b02241c7597da98ec58a62d8.tar.gz",
     ],
 )
 
