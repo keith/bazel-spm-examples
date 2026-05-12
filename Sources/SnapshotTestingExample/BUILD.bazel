@@ -1,0 +1,14 @@
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+load("//:apple_build_tests.bzl", "apple_build_tests")
+
+swift_library(
+    name = "SnapshotTestingExample",
+    testonly = True,
+    srcs = ["SnapshotTestingExample.swift"],
+    module_name = "SnapshotTestingExample",
+    tags = ["manual"],
+    visibility = ["//visibility:public"],
+    deps = ["@swiftpkg_swift_snapshot_testing//:SnapshotTesting"],
+)
+
+apple_build_tests(targets = [":SnapshotTestingExample"])
