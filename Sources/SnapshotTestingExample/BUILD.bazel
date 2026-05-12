@@ -3,6 +3,7 @@ load("//:apple_build_tests.bzl", "apple_build_tests")
 
 swift_library(
     name = "SnapshotTestingExample",
+    testonly = True,
     srcs = ["SnapshotTestingExample.swift"],
     module_name = "SnapshotTestingExample",
     tags = ["manual"],
