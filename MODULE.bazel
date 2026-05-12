@@ -84,6 +84,7 @@ use_repo(
     "swiftpkg_swift_log",
     "swiftpkg_swift_nio",
     "swiftpkg_swift_perception",
+    "swiftpkg_swift_snapshot_testing",
     "swiftpkg_swift_syntax",
 )
 
