@@ -97,6 +97,24 @@ archive_override(
     ],
 )
 
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+http_archive(
+    name = "sentry_dynamic_xcframework",
+    build_file_content = """
+load("@rules_apple//apple:apple.bzl", "apple_dynamic_xcframework_import")
+
+apple_dynamic_xcframework_import(
+    name = "Sentry",
+    visibility = ["//visibility:public"],
+    xcframework_imports = glob(["*.xcframework/**"]),
+)
+""",
+    sha256 = "0dae35ca7542486a4186598394eb9b0d3ebe8402cedf5846af19cc44b89c9fb6",
+    urls = [
+        "https://github.com/getsentry/sentry-cocoa/releases/download/9.13.0/Sentry-Dynamic.xcframework.zip",
+    ],
+)
+
 archive_override(
     module_name = "rules_swift",
     integrity = "sha256-azV2wvUfGzd2ERdttHwH1jfpEol3jZlvOx+Zuak9By8=",

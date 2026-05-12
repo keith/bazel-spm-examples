@@ -1,0 +1,21 @@
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+load("//:apple_build_tests.bzl", "apple_build_tests")
+
+swift_library(
+    name = "SentryExample",
+    srcs = ["SentryExample.swift"],
+    module_name = "SentryExample",
+    tags = ["manual"],
+    target_compatible_with = select({
+        "@platforms//os:ios": [],
+        "@platforms//os:macos": [],
+        "@platforms//os:tvos": [],
+        "@platforms//os:visionos": [],
+        "@platforms//os:watchos": [],
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
+    visibility = ["//visibility:public"],
+    deps = ["@sentry_dynamic_xcframework//:Sentry"],
+)
+
+apple_build_tests(targets = [":SentryExample"])
