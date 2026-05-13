@@ -88,16 +88,8 @@ use_repo(
     "swiftpkg_swift_syntax",
 )
 
-archive_override(
-    module_name = "rules_apple",
-    integrity = "sha256-WXhVBA00wqJqdPLYME+1tMxjH8zhqTw/ILSA+TU7Igw=",
-    strip_prefix = "rules_apple-b78f53a348104ce01129cfcecb6b4726dc0555c9",
-    urls = [
-        "https://github.com/bazelbuild/rules_apple/archive/b78f53a348104ce01129cfcecb6b4726dc0555c9.tar.gz",
-    ],
-)
-
 http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
 http_archive(
     name = "sentry_dynamic_xcframework",
     build_file_content = """
@@ -116,10 +108,19 @@ apple_dynamic_xcframework_import(
 )
 
 archive_override(
-    module_name = "rules_swift",
-    integrity = "sha256-azV2wvUfGzd2ERdttHwH1jfpEol3jZlvOx+Zuak9By8=",
-    strip_prefix = "rules_swift-018e3f03e7e70b1062870f47ac8eb150f7a86b49",
+    module_name = "rules_apple",
+    integrity = "sha256-KSeYH8qa5NwhTWEvfzhCg275mnA2psHRDc+uwL4E8qg=",
+    strip_prefix = "rules_apple-8e21ee11562e182a35a13404f8f12cba56e850cc",
     urls = [
-        "https://github.com/bazelbuild/rules_swift/archive/018e3f03e7e70b1062870f47ac8eb150f7a86b49.tar.gz",
+        "https://github.com/bazelbuild/rules_apple/archive/8e21ee11562e182a35a13404f8f12cba56e850cc.tar.gz",
+    ],
+)
+
+archive_override(
+    module_name = "rules_swift",
+    integrity = "sha256-H0AVBE3+EnOP0FheGA5E8gREbjlEeZ1yVWSOktA9Rtk=",
+    strip_prefix = "rules_swift-f35bdc631ad5e67574f5131b1b1b9800b4200732",
+    urls = [
+        "https://github.com/bazelbuild/rules_swift/archive/f35bdc631ad5e67574f5131b1b1b9800b4200732.tar.gz",
     ],
 )
