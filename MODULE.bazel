@@ -88,20 +88,39 @@ use_repo(
     "swiftpkg_swift_syntax",
 )
 
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "sentry_dynamic_xcframework",
+    build_file_content = """
+load("@rules_apple//apple:apple.bzl", "apple_dynamic_xcframework_import")
+
+apple_dynamic_xcframework_import(
+    name = "Sentry",
+    visibility = ["//visibility:public"],
+    xcframework_imports = glob(["*.xcframework/**"]),
+)
+""",
+    sha256 = "0dae35ca7542486a4186598394eb9b0d3ebe8402cedf5846af19cc44b89c9fb6",
+    urls = [
+        "https://github.com/getsentry/sentry-cocoa/releases/download/9.13.0/Sentry-Dynamic.xcframework.zip",
+    ],
+)
+
 archive_override(
     module_name = "rules_apple",
-    integrity = "sha256-WXhVBA00wqJqdPLYME+1tMxjH8zhqTw/ILSA+TU7Igw=",
-    strip_prefix = "rules_apple-b78f53a348104ce01129cfcecb6b4726dc0555c9",
+    integrity = "sha256-KSeYH8qa5NwhTWEvfzhCg275mnA2psHRDc+uwL4E8qg=",
+    strip_prefix = "rules_apple-8e21ee11562e182a35a13404f8f12cba56e850cc",
     urls = [
-        "https://github.com/bazelbuild/rules_apple/archive/b78f53a348104ce01129cfcecb6b4726dc0555c9.tar.gz",
+        "https://github.com/bazelbuild/rules_apple/archive/8e21ee11562e182a35a13404f8f12cba56e850cc.tar.gz",
     ],
 )
 
 archive_override(
     module_name = "rules_swift",
-    integrity = "sha256-azV2wvUfGzd2ERdttHwH1jfpEol3jZlvOx+Zuak9By8=",
-    strip_prefix = "rules_swift-018e3f03e7e70b1062870f47ac8eb150f7a86b49",
+    integrity = "sha256-dE7NDlmI+Ik2NzOVBAX2vVtJVkWde+1kqi4HNRjutLI=",
+    strip_prefix = "rules_swift-be138cd310f26cb9ad3cccf05139a89941c7dff6",
     urls = [
-        "https://github.com/bazelbuild/rules_swift/archive/018e3f03e7e70b1062870f47ac8eb150f7a86b49.tar.gz",
+        "https://github.com/bazelbuild/rules_swift/archive/be138cd310f26cb9ad3cccf05139a89941c7dff6.tar.gz",
     ],
 )
