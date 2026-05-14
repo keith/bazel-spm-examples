@@ -118,9 +118,9 @@ archive_override(
 
 archive_override(
     module_name = "rules_swift",
-    integrity = "sha256-H0AVBE3+EnOP0FheGA5E8gREbjlEeZ1yVWSOktA9Rtk=",
-    strip_prefix = "rules_swift-f35bdc631ad5e67574f5131b1b1b9800b4200732",
+    integrity = "sha256-dE7NDlmI+Ik2NzOVBAX2vVtJVkWde+1kqi4HNRjutLI=",
+    strip_prefix = "rules_swift-be138cd310f26cb9ad3cccf05139a89941c7dff6",
     urls = [
-        "https://github.com/bazelbuild/rules_swift/archive/f35bdc631ad5e67574f5131b1b1b9800b4200732.tar.gz",
+        "https://github.com/bazelbuild/rules_swift/archive/be138cd310f26cb9ad3cccf05139a89941c7dff6.tar.gz",
     ],
 )
