@@ -64,6 +64,33 @@
       }
     },
     {
+      "identity" : "mapbox-common-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mapbox/mapbox-common-ios.git",
+      "state" : {
+        "revision" : "daef80aefb4d66c81ad067c3cef806e7cec4ea48",
+        "version" : "24.24.2"
+      }
+    },
+    {
+      "identity" : "mapbox-core-maps-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mapbox/mapbox-core-maps-ios.git",
+      "state" : {
+        "revision" : "909b75a6a37f9621821c990c2f04e1e4faf3068c",
+        "version" : "11.24.2"
+      }
+    },
+    {
+      "identity" : "mapbox-maps-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mapbox/mapbox-maps-ios",
+      "state" : {
+        "revision" : "83448f0a1ed6b3ab2d76ce344ec15e14510951e1",
+        "version" : "11.24.2"
+      }
+    },
+    {
       "identity" : "misnap-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Mitek-Systems/MiSnap-iOS",
@@ -286,6 +313,15 @@
       "state" : {
         "revision" : "7c6ad0fc39d0763e0b699210e4124afd5041c5df",
         "version" : "1.6.4"
+      }
+    },
+    {
+      "identity" : "turf-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mapbox/turf-swift.git",
+      "state" : {
+        "revision" : "bf840e6b9529d105687840fe2c9dcd74197d46d1",
+        "version" : "4.0.0"
       }
     },
     {

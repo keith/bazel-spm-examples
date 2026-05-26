@@ -1,0 +1,24 @@
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+load("//:apple_build_tests.bzl", "apple_build_tests")
+
+# Mapbox Maps SDK for iOS declares non-iOS package platforms for supporting
+# tools, but the SDK itself is an iOS mapping SDK.
+swift_library(
+    name = "MapboxMapsExample",
+    srcs = ["MapboxMapsExample.swift"],
+    module_name = "MapboxMapsExample",
+    tags = ["manual"],
+    target_compatible_with = ["@platforms//os:ios"],
+    visibility = ["//visibility:public"],
+    deps = ["@swiftpkg_mapbox_maps_ios//:MapboxMaps"],
+)
+
+apple_build_tests(
+    exclude = [
+        "macos",
+        "tvos",
+        "watchos",
+        "visionos",
+    ],
+    targets = [":MapboxMapsExample"],
+)
