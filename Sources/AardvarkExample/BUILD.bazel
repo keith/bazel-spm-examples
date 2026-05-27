@@ -4,11 +4,13 @@ load("//:apple_build_tests.bzl", "apple_build_tests")
 swift_library(
     name = "AardvarkExample",
     srcs = ["AardvarkExample.swift"],
-
     copts = select({
         "//:explicit_modules_enabled": [],
         # NOTE: This package doesn't build without this, solved in explicit modules
-        "//conditions:default": ["-Xcc", "-DSWIFT_PACKAGE"],
+        "//conditions:default": [
+            "-Xcc",
+            "-DSWIFT_PACKAGE",
+        ],
     }),
     module_name = "AardvarkExample",
     tags = ["manual"],
