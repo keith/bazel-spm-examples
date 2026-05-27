@@ -45,6 +45,10 @@ swift_deps.configure_package(
     },
 )
 swift_deps.configure_package(
+    name = "swiftpkg_googleappmeasurement",
+    build_file = "//patches:googleappmeasurement.BUILD.bazel",
+)
+swift_deps.configure_package(
     name = "swiftpkg_misnap_ios",
     target_deps = {
         "MiSnap": [
@@ -87,6 +91,7 @@ use_repo(
     "swiftpkg_alamofire",
     "swiftpkg_appauth_ios",
     "swiftpkg_braintree_ios",
+    "swiftpkg_googleappmeasurement",
     "swiftpkg_gtm_session_fetcher",
     "swiftpkg_gtmappauth",
     "swiftpkg_mapbox_maps_ios",

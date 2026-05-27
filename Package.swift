@@ -20,6 +20,7 @@ let package = Package(
 
         .package(url: "https://github.com/Alamofire/Alamofire", from: "5.11.0"),
         .package(url: "https://github.com/braintree/braintree_ios", from: "7.5.0"),
+        .package(url: "https://github.com/google/GoogleAppMeasurement", from: "12.14.0"),
         .package(url: "https://github.com/google/gtm-session-fetcher", from: "3.5.0"),
         .package(url: "https://github.com/google/GTMAppAuth", from: "5.0.0"),
         .package(url: "https://github.com/mapbox/mapbox-maps-ios", from: "11.24.2"),
