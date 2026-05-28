@@ -8,7 +8,10 @@ swift_library(
     module_name = "NIOExample",
     tags = ["manual"],
     visibility = ["//visibility:public"],
-    deps = ["@swiftpkg_swift_nio//:NIOPosix"],
+    deps = [
+        "@swiftpkg_swift_nio//:NIOCore",
+        "@swiftpkg_swift_nio//:NIOPosix",
+    ],
 )
 
 apple_build_tests(
