@@ -8,7 +8,10 @@ swift_library(
     module_name = "SwiftSyntaxExample",
     tags = ["manual"],
     visibility = ["//visibility:public"],
-    deps = ["@swiftpkg_swift_syntax//:SwiftParser"],
+    deps = [
+        "@swiftpkg_swift_syntax//:SwiftParser",
+        "@swiftpkg_swift_syntax//:SwiftSyntax",
+    ],
 )
 
 apple_build_tests(
