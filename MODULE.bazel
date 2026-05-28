@@ -109,18 +109,18 @@ apple_dynamic_xcframework_import(
 
 archive_override(
     module_name = "rules_apple",
-    integrity = "sha256-KSeYH8qa5NwhTWEvfzhCg275mnA2psHRDc+uwL4E8qg=",
-    strip_prefix = "rules_apple-8e21ee11562e182a35a13404f8f12cba56e850cc",
+    integrity = "sha256-KThDAqlzs317yMtEg5UfuOYcIzBTw3pRl+ssN/G6iw8=",
+    strip_prefix = "rules_apple-fa73b6e06ab1937733f8d44ab0330b21509c87eb",
     urls = [
-        "https://github.com/bazelbuild/rules_apple/archive/8e21ee11562e182a35a13404f8f12cba56e850cc.tar.gz",
+        "https://github.com/bazelbuild/rules_apple/archive/fa73b6e06ab1937733f8d44ab0330b21509c87eb.tar.gz",
     ],
 )
 
 archive_override(
     module_name = "rules_swift",
-    integrity = "sha256-dE7NDlmI+Ik2NzOVBAX2vVtJVkWde+1kqi4HNRjutLI=",
-    strip_prefix = "rules_swift-be138cd310f26cb9ad3cccf05139a89941c7dff6",
+    integrity = "sha256-43OBTh3U0Ml7EH/V7XlBNY8QMZIzx3lZh4tytEvO47w=",
+    strip_prefix = "rules_swift-ce0de97eea7287def102179290fa77095b105465",
     urls = [
-        "https://github.com/bazelbuild/rules_swift/archive/be138cd310f26cb9ad3cccf05139a89941c7dff6.tar.gz",
+        "https://github.com/bazelbuild/rules_swift/archive/ce0de97eea7287def102179290fa77095b105465.tar.gz",
     ],
 )
