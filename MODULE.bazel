@@ -29,6 +29,22 @@ swift_deps.from_package(
     swift = "//:Package.swift",
 )
 swift_deps.configure_package(
+    name = "swiftpkg_mapbox_common_ios",
+    target_deps = {
+        "MapboxCommon": [
+            "@swiftpkg_turf_swift//:Turf",
+        ],
+    },
+)
+swift_deps.configure_package(
+    name = "swiftpkg_mapbox_core_maps_ios",
+    target_deps = {
+        "MapboxCoreMaps": [
+            "@swiftpkg_mapbox_common_ios//:MapboxCommon",
+        ],
+    },
+)
+swift_deps.configure_package(
     name = "swiftpkg_misnap_ios",
     target_deps = {
         "MiSnap": [
@@ -73,6 +89,7 @@ use_repo(
     "swiftpkg_braintree_ios",
     "swiftpkg_gtm_session_fetcher",
     "swiftpkg_gtmappauth",
+    "swiftpkg_mapbox_maps_ios",
     "swiftpkg_misnap_ios",
     "swiftpkg_rxswift",
     "swiftpkg_swift_algorithms",
