@@ -24,7 +24,7 @@ jobs:
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.4.1.app/Contents/Developer
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: bazel-contrib/setup-bazel@0.19.0
         with:
           bazelisk-cache: true
@@ -38,7 +38,7 @@ jobs:
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.4.1.app/Contents/Developer
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: bazel-contrib/setup-bazel@0.19.0
         with:
           bazelisk-cache: true
@@ -50,8 +50,8 @@ jobs:
     name: Linux
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: swift-actions/setup-swift@v2.4.0
+      - uses: actions/checkout@v6
+      - uses: swift-actions/setup-swift@v3
         with:
           swift-version: "6.2"
       - uses: bazel-contrib/setup-bazel@0.19.0
@@ -67,8 +67,8 @@ jobs:
   #   name: Linux (explicit modules)
   #   runs-on: ubuntu-22.04
   #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: swift-actions/setup-swift@v2.4.0
+  #     - uses: actions/checkout@v6
+  #     - uses: swift-actions/setup-swift@v3
   #       with:
   #         swift-version: "6.2"
   #     - uses: bazel-contrib/setup-bazel@0.19.0
