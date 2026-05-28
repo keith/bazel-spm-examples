@@ -1,0 +1,30 @@
+version: 2
+
+updates:
+  # Bazel module dependencies resolved from the Bazel Central Registry.
+  #
+  # rules_apple / rules_swift are intentionally excluded: they are pinned to
+  # upstream HEAD via archive_override() in MODULE.bazel and bumped by the
+  # "Update rules" workflow. Dependabot only tracks released BCR versions and
+  # cannot update archive_override() commit pins.
+  - package-ecosystem: "bazel"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      - dependency-name: "rules_apple"
+      - dependency-name: "rules_swift"
+    groups:
+      bazel-modules:
+        patterns:
+          - "*"
+
+  # Actions referenced by the workflows in .github/workflows.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
