@@ -1,0 +1,55 @@
+swift_deps = use_extension(
+    "@rules_swift_package_manager//:extensions.bzl",
+    "swift_deps",
+)
+swift_deps.configure_package(
+    name = "swiftpkg_mapbox_common_ios",
+    target_deps = {
+        "MapboxCommon": [
+            "@swiftpkg_turf_swift//:Turf",
+        ],
+    },
+)
+swift_deps.configure_package(
+    name = "swiftpkg_mapbox_core_maps_ios",
+    target_deps = {
+        "MapboxCoreMaps": [
+            "@swiftpkg_mapbox_common_ios//:MapboxCommon",
+        ],
+    },
+)
+swift_deps.configure_package(
+    name = "swiftpkg_misnap_ios",
+    target_deps = {
+        "MiSnap": [
+            ":MiSnapCamera",
+            ":MiSnapCore",
+            ":MiSnapScience",
+        ],
+        "MiSnapFacialCapture": [":MiSnapCore"],
+        "MiSnapFacialCaptureUX": [
+            ":MiSnapAssetManager",
+            ":MiSnapCore",
+            ":MiSnapFacialCapture",
+        ],
+        "MiSnapNFC": [":MiSnapCore"],
+        "MiSnapNFCUX": [
+            ":MiSnapAssetManager",
+            ":MiSnapCore",
+            ":MiSnapNFC",
+        ],
+        "MiSnapUX": [
+            ":MiSnap",
+            ":MiSnapAssetManager",
+            ":MiSnapCamera",
+            ":MiSnapCore",
+            ":MiSnapScience",
+        ],
+        "MiSnapVoiceCapture": [":MiSnapCore"],
+        "MiSnapVoiceCaptureUX": [
+            ":MiSnapAssetManager",
+            ":MiSnapCore",
+            ":MiSnapVoiceCapture",
+        ],
+    },
+)
