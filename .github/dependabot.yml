@@ -24,6 +24,9 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      # https://github.com/swift-actions/setup-swift/issues/798
+      - dependency-name: "swift-actions/setup-swift"
     groups:
       github-actions:
         patterns:
