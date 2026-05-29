@@ -31,9 +31,9 @@ jobs:
           disk-cache: ${{ github.workflow }}-macos
           repository-cache: false
       - run: |
-        # Remove deps added for explicit modules
-        echo > deps.MODULE.bazel
-        bazel test --config=buildbuddy ${BUILDBUDDY_API_KEY:+--remote_header=x-buildbuddy-api-key=$BUILDBUDDY_API_KEY} //...
+          # Remove deps added for explicit modules
+          echo > deps.MODULE.bazel
+          bazel test --config=buildbuddy ${BUILDBUDDY_API_KEY:+--remote_header=x-buildbuddy-api-key=$BUILDBUDDY_API_KEY} //...
 
   macos-explicit-modules:
     name: Apple platforms (explicit modules)
