@@ -1,0 +1,25 @@
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+load("//:apple_build_tests.bzl", "apple_build_tests")
+
+swift_library(
+    name = "BrazeExample",
+    srcs = ["BrazeExample.swift"],
+    module_name = "BrazeExample",
+    tags = ["manual"],
+    target_compatible_with = select({
+        "@platforms//os:ios": [],
+        "@platforms//os:tvos": [],
+        "@platforms//os:visionos": [],
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
+    visibility = ["//visibility:public"],
+    deps = ["@swiftpkg_braze_swift_sdk//:BrazeKit"],
+)
+
+apple_build_tests(
+    exclude = [
+        "macos",
+        "watchos",
+    ],
+    targets = [":BrazeExample"],
+)

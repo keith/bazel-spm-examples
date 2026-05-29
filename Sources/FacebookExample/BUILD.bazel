@@ -1,0 +1,22 @@
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+load("//:apple_build_tests.bzl", "apple_build_tests")
+
+swift_library(
+    name = "FacebookExample",
+    srcs = ["FacebookExample.swift"],
+    module_name = "FacebookExample",
+    tags = ["manual"],
+    target_compatible_with = ["@platforms//os:ios"],
+    visibility = ["//visibility:public"],
+    deps = ["@swiftpkg_facebook_ios_sdk//:FacebookCore"],
+)
+
+apple_build_tests(
+    exclude = [
+        "macos",
+        "tvos",
+        "watchos",
+        "visionos",
+    ],
+    targets = [":FacebookExample"],
+)
