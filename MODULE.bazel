@@ -28,80 +28,9 @@ swift_deps.from_package(
     resolved = "//:Package.resolved",
     swift = "//:Package.swift",
 )
-swift_deps.configure_package(
-    name = "swiftpkg_mapbox_common_ios",
-    target_deps = {
-        "MapboxCommon": [
-            "@swiftpkg_turf_swift//:Turf",
-        ],
-    },
-)
-swift_deps.configure_package(
-    name = "swiftpkg_mapbox_core_maps_ios",
-    target_deps = {
-        "MapboxCoreMaps": [
-            "@swiftpkg_mapbox_common_ios//:MapboxCommon",
-        ],
-    },
-)
-swift_deps.configure_package(
-    name = "swiftpkg_facebook_ios_sdk",
-    target_deps = {
-        "FBAEMKit": [":FBSDKCoreKit_Basics"],
-        "FBSDKCoreKit": [
-            ":FBAEMKit",
-            ":FBSDKCoreKit_Basics",
-        ],
-        "FBSDKGamingServicesKit": [
-            ":FBSDKCoreKit",
-            ":FBSDKCoreKit_Basics",
-            ":FBSDKShareKit",
-        ],
-        "FBSDKLoginKit": [
-            ":FBSDKCoreKit",
-            ":FBSDKCoreKit_Basics",
-        ],
-        "FBSDKShareKit": [
-            ":FBSDKCoreKit",
-            ":FBSDKCoreKit_Basics",
-        ],
-    },
-)
-swift_deps.configure_package(
-    name = "swiftpkg_misnap_ios",
-    target_deps = {
-        "MiSnap": [
-            ":MiSnapCamera",
-            ":MiSnapCore",
-            ":MiSnapScience",
-        ],
-        "MiSnapFacialCapture": [":MiSnapCore"],
-        "MiSnapFacialCaptureUX": [
-            ":MiSnapAssetManager",
-            ":MiSnapCore",
-            ":MiSnapFacialCapture",
-        ],
-        "MiSnapNFC": [":MiSnapCore"],
-        "MiSnapNFCUX": [
-            ":MiSnapAssetManager",
-            ":MiSnapCore",
-            ":MiSnapNFC",
-        ],
-        "MiSnapUX": [
-            ":MiSnap",
-            ":MiSnapAssetManager",
-            ":MiSnapCamera",
-            ":MiSnapCore",
-            ":MiSnapScience",
-        ],
-        "MiSnapVoiceCapture": [":MiSnapCore"],
-        "MiSnapVoiceCaptureUX": [
-            ":MiSnapAssetManager",
-            ":MiSnapCore",
-            ":MiSnapVoiceCapture",
-        ],
-    },
-)
+
+include("//:deps.MODULE.bazel")
+
 use_repo(
     swift_deps,
     "swift_deps_info",
@@ -151,10 +80,10 @@ apple_dynamic_xcframework_import(
 
 archive_override(
     module_name = "rules_apple",
-    integrity = "sha256-KThDAqlzs317yMtEg5UfuOYcIzBTw3pRl+ssN/G6iw8=",
-    strip_prefix = "rules_apple-fa73b6e06ab1937733f8d44ab0330b21509c87eb",
+    integrity = "sha256-u0V4MiqG/5qlynTKEfXlPouTgY2tox976CKc7A/YKNo=",
+    strip_prefix = "rules_apple-0df51e1cfccde8c0ab5cd8307f808b4d665de23b",
     urls = [
-        "https://github.com/bazelbuild/rules_apple/archive/fa73b6e06ab1937733f8d44ab0330b21509c87eb.tar.gz",
+        "https://github.com/bazelbuild/rules_apple/archive/0df51e1cfccde8c0ab5cd8307f808b4d665de23b.tar.gz",
     ],
 )
 
