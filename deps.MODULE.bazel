@@ -19,6 +19,29 @@ swift_deps.configure_package(
     },
 )
 swift_deps.configure_package(
+    name = "swiftpkg_facebook_ios_sdk",
+    target_deps = {
+        "FBAEMKit": [":FBSDKCoreKit_Basics"],
+        "FBSDKCoreKit": [
+            ":FBAEMKit",
+            ":FBSDKCoreKit_Basics",
+        ],
+        "FBSDKGamingServicesKit": [
+            ":FBSDKCoreKit",
+            ":FBSDKCoreKit_Basics",
+            ":FBSDKShareKit",
+        ],
+        "FBSDKLoginKit": [
+            ":FBSDKCoreKit",
+            ":FBSDKCoreKit_Basics",
+        ],
+        "FBSDKShareKit": [
+            ":FBSDKCoreKit",
+            ":FBSDKCoreKit_Basics",
+        ],
+    },
+)
+swift_deps.configure_package(
     name = "swiftpkg_misnap_ios",
     target_deps = {
         "MiSnap": [
