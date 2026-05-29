@@ -1,0 +1,343 @@
+load("@build_bazel_rules_apple//apple:apple.bzl", "apple_static_xcframework_import")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_interop_hint", "swift_library_group")
+load("@rules_cc//cc:defs.bzl", "cc_library", "objc_library")
+load("@rules_license//rules:license.bzl", "license")
+load("@rules_license//rules:package_info.bzl", "package_info")
+load("@rules_swift_package_manager//swiftpkg/internal:minimum_os_transition.bzl", "spm_minimum_os_target")
+load("@rules_swift_package_manager//swiftpkg:build_defs.bzl", "generate_modulemap")
+
+package(
+    default_package_metadata = [
+        ":license.rspm",
+        ":package_info.rspm",
+    ],
+)
+
+exports_files(["pkg_info.json"])
+
+apple_static_xcframework_import(
+    name = "GoogleAppMeasurement.rspm.__impl",
+    alwayslink = True,
+    tags = ["manual"],
+    visibility = ["//:__subpackages__"],
+    xcframework_imports = glob(
+        ["remote/archive/GoogleAppMeasurement.zip/GoogleAppMeasurement.xcframework/**"],
+        exclude = ["remote/archive/GoogleAppMeasurement.zip/GoogleAppMeasurement.xcframework/**/Modules/module.modulemap"],
+    ),
+)
+
+apple_static_xcframework_import(
+    name = "GoogleAppMeasurementIdentitySupport.rspm.__impl",
+    alwayslink = True,
+    tags = ["manual"],
+    visibility = ["//:__subpackages__"],
+    xcframework_imports = glob(
+        ["remote/archive/GoogleAppMeasurementIdentitySupport.zip/GoogleAppMeasurementIdentitySupport.xcframework/**"],
+        exclude = ["remote/archive/GoogleAppMeasurementIdentitySupport.zip/GoogleAppMeasurementIdentitySupport.xcframework/**/Modules/module.modulemap"],
+    ),
+)
+
+generate_modulemap(
+    name = "GoogleAppMeasurementCoreTarget.rspm_modulemap",
+    deps = [],
+    hdrs = ["GoogleAppMeasurementCoreWrapper/include/dummy.h"],
+    module_name = "GoogleAppMeasurementCoreTarget",
+    visibility = ["//:__subpackages__"],
+)
+
+generate_modulemap(
+    name = "GoogleAppMeasurementIdentitySupportTarget.rspm_modulemap",
+    deps = [],
+    hdrs = ["GoogleAppMeasurementIdentitySupportWrapper/include/dummy.h"],
+    module_name = "GoogleAppMeasurementIdentitySupportTarget",
+    visibility = ["//:__subpackages__"],
+)
+
+generate_modulemap(
+    name = "GoogleAppMeasurementTarget.rspm_modulemap",
+    deps = [],
+    hdrs = ["GoogleAppMeasurementWrapper/include/dummy.h"],
+    module_name = "GoogleAppMeasurementTarget",
+    visibility = ["//:__subpackages__"],
+)
+
+license(
+    name = "license.rspm",
+    license_text = "LICENSE",
+)
+
+objc_library(
+    name = "GoogleAppMeasurementCoreTarget.rspm.__impl",
+    deps = [
+        ":GoogleAppMeasurementCoreTarget.rspm_modulemap",
+        ":GoogleAppMeasurementCoreTarget.rspm_objc",
+    ],
+    tags = ["manual"],
+    visibility = ["//:__subpackages__"],
+)
+
+objc_library(
+    name = "GoogleAppMeasurementCoreTarget.rspm_objc",
+    alwayslink = True,
+    aspect_hints = ["GoogleAppMeasurementCoreTarget.rspm_swift_hint"],
+    copts = [
+        "-fblocks",
+        "-fobjc-arc",
+        "-fPIC",
+        "-DSWIFT_PACKAGE=1",
+        "-fmodule-name=GoogleAppMeasurementCoreTarget",
+        "-std=c99",
+    ] + select({
+        "@rules_swift_package_manager//config_settings/bazel/compilation_mode:dbg": ["-DDEBUG=1"],
+        "//conditions:default": [],
+    }),
+    deps = [
+        "@swiftpkg_googleutilities//:GULAppDelegateSwizzler",
+        "@swiftpkg_googleutilities//:GULMethodSwizzler",
+        "@swiftpkg_googleutilities//:GULNSData",
+        "@swiftpkg_googleutilities//:GULNetwork",
+        "@swiftpkg_googleutilities//:GULLogger",
+        "@swiftpkg_googleutilities//:GULEnvironment",
+        "@swiftpkg_nanopb//:nanopb",
+    ] + select({
+        "@rules_swift_package_manager//config_settings/spm/platform:ios": ["@swiftpkg_googleappmeasurement//:GoogleAppMeasurement.rspm"],
+        "@rules_swift_package_manager//config_settings/spm/platform:macos": ["@swiftpkg_googleappmeasurement//:GoogleAppMeasurement.rspm"],
+        "@rules_swift_package_manager//config_settings/spm/platform:tvos": ["@swiftpkg_googleappmeasurement//:GoogleAppMeasurement.rspm"],
+        "//conditions:default": [],
+    }),
+    enable_modules = True,
+    hdrs = ["GoogleAppMeasurementCoreWrapper/include/dummy.h"],
+    includes = ["GoogleAppMeasurementCoreWrapper/include"],
+    linkopts = [
+        "-lsqlite3",
+        "-lc++",
+        "-lz",
+        "-framework StoreKit",
+    ],
+    srcs = ["GoogleAppMeasurementCoreWrapper/dummy.m"],
+    textual_hdrs = ["GoogleAppMeasurementCoreWrapper/dummy.m"],
+    visibility = ["//:__subpackages__"],
+)
+
+objc_library(
+    name = "GoogleAppMeasurementIdentitySupportTarget.rspm.__impl",
+    deps = [
+        ":GoogleAppMeasurementIdentitySupportTarget.rspm_modulemap",
+        ":GoogleAppMeasurementIdentitySupportTarget.rspm_objc",
+    ],
+    tags = ["manual"],
+    visibility = ["//:__subpackages__"],
+)
+
+objc_library(
+    name = "GoogleAppMeasurementIdentitySupportTarget.rspm_objc",
+    alwayslink = True,
+    aspect_hints = ["GoogleAppMeasurementIdentitySupportTarget.rspm_swift_hint"],
+    copts = [
+        "-fblocks",
+        "-fobjc-arc",
+        "-fPIC",
+        "-DSWIFT_PACKAGE=1",
+        "-fmodule-name=GoogleAppMeasurementIdentitySupportTarget",
+        "-std=c99",
+    ] + select({
+        "@rules_swift_package_manager//config_settings/bazel/compilation_mode:dbg": ["-DDEBUG=1"],
+        "//conditions:default": [],
+    }),
+    deps = [
+        "@swiftpkg_googleutilities//:GULAppDelegateSwizzler",
+        "@swiftpkg_googleutilities//:GULMethodSwizzler",
+        "@swiftpkg_googleutilities//:GULNSData",
+        "@swiftpkg_googleutilities//:GULNetwork",
+        "@swiftpkg_googleutilities//:GULLogger",
+        "@swiftpkg_googleutilities//:GULEnvironment",
+        "@swiftpkg_nanopb//:nanopb",
+    ] + select({
+        "@rules_swift_package_manager//config_settings/spm/platform:ios": [
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurementIdentitySupport.rspm",
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurement.rspm",
+        ],
+        "@rules_swift_package_manager//config_settings/spm/platform:macos": [
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurementIdentitySupport.rspm",
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurement.rspm",
+        ],
+        "@rules_swift_package_manager//config_settings/spm/platform:tvos": [
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurementIdentitySupport.rspm",
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurement.rspm",
+        ],
+        "//conditions:default": [],
+    }),
+    enable_modules = True,
+    hdrs = ["GoogleAppMeasurementIdentitySupportWrapper/include/dummy.h"],
+    includes = ["GoogleAppMeasurementIdentitySupportWrapper/include"],
+    linkopts = [
+        "-lsqlite3",
+        "-lc++",
+        "-lz",
+        "-framework StoreKit",
+    ],
+    srcs = ["GoogleAppMeasurementIdentitySupportWrapper/dummy.m"],
+    textual_hdrs = ["GoogleAppMeasurementIdentitySupportWrapper/dummy.m"],
+    visibility = ["//:__subpackages__"],
+)
+
+objc_library(
+    name = "GoogleAppMeasurementTarget.rspm.__impl",
+    deps = [
+        ":GoogleAppMeasurementTarget.rspm_modulemap",
+        ":GoogleAppMeasurementTarget.rspm_objc",
+    ],
+    tags = ["manual"],
+    visibility = ["//:__subpackages__"],
+)
+
+objc_library(
+    name = "GoogleAppMeasurementTarget.rspm_objc",
+    alwayslink = True,
+    aspect_hints = ["GoogleAppMeasurementTarget.rspm_swift_hint"],
+    copts = [
+        "-fblocks",
+        "-fobjc-arc",
+        "-fPIC",
+        "-DSWIFT_PACKAGE=1",
+        "-fmodule-name=GoogleAppMeasurementTarget",
+        "-std=c99",
+    ] + select({
+        "@rules_swift_package_manager//config_settings/bazel/compilation_mode:dbg": ["-DDEBUG=1"],
+        "//conditions:default": [],
+    }),
+    deps = [
+        "@swiftpkg_googleutilities//:GULAppDelegateSwizzler",
+        "@swiftpkg_googleutilities//:GULMethodSwizzler",
+        "@swiftpkg_googleutilities//:GULNSData",
+        "@swiftpkg_googleutilities//:GULNetwork",
+        "@swiftpkg_googleutilities//:GULLogger",
+        "@swiftpkg_googleutilities//:GULEnvironment",
+        "@swiftpkg_nanopb//:nanopb",
+        "@swiftpkg_google_ads_on_device_conversion_ios_sdk//:GoogleAdsOnDeviceConversion",
+    ] + select({
+        "@rules_swift_package_manager//config_settings/spm/platform:ios": [
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurementIdentitySupport.rspm",
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurement.rspm",
+        ],
+        "@rules_swift_package_manager//config_settings/spm/platform:macos": [
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurementIdentitySupport.rspm",
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurement.rspm",
+        ],
+        "@rules_swift_package_manager//config_settings/spm/platform:tvos": [
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurementIdentitySupport.rspm",
+            "@swiftpkg_googleappmeasurement//:GoogleAppMeasurement.rspm",
+        ],
+        "//conditions:default": [],
+    }),
+    enable_modules = True,
+    hdrs = ["GoogleAppMeasurementWrapper/include/dummy.h"],
+    includes = ["GoogleAppMeasurementWrapper/include"],
+    linkopts = [
+        "-lsqlite3",
+        "-lc++",
+        "-lz",
+        "-framework StoreKit",
+    ],
+    srcs = ["GoogleAppMeasurementWrapper/dummy.m"],
+    textual_hdrs = ["GoogleAppMeasurementWrapper/dummy.m"],
+    visibility = ["//:__subpackages__"],
+)
+
+package_info(
+    name = "package_info.rspm",
+    package_name = "GoogleAppMeasurement",
+    package_url = "https://github.com/google/GoogleAppMeasurement",
+    package_version = "12.14.0",
+)
+
+spm_minimum_os_target(
+    name = "GoogleAppMeasurement.rspm",
+    deps = [":GoogleAppMeasurement.rspm.__impl"],
+    ios_minimum_os = "15.0",
+    macos_minimum_os = "10.15",
+    tvos_minimum_os = "15.0",
+    visibility = ["//:__subpackages__"],
+    visionos_minimum_os = "1.0",
+    watchos_minimum_os = "7.0",
+)
+
+spm_minimum_os_target(
+    name = "GoogleAppMeasurementCoreTarget.rspm",
+    deps = [":GoogleAppMeasurementCoreTarget.rspm.__impl"],
+    ios_minimum_os = "15.0",
+    macos_minimum_os = "10.15",
+    tvos_minimum_os = "15.0",
+    visibility = ["//:__subpackages__"],
+    visionos_minimum_os = "1.0",
+    watchos_minimum_os = "7.0",
+)
+
+spm_minimum_os_target(
+    name = "GoogleAppMeasurementIdentitySupport.rspm",
+    deps = [":GoogleAppMeasurementIdentitySupport.rspm.__impl"],
+    ios_minimum_os = "15.0",
+    macos_minimum_os = "10.15",
+    tvos_minimum_os = "15.0",
+    visibility = ["//:__subpackages__"],
+    visionos_minimum_os = "1.0",
+    watchos_minimum_os = "7.0",
+)
+
+spm_minimum_os_target(
+    name = "GoogleAppMeasurementIdentitySupportTarget.rspm",
+    deps = [":GoogleAppMeasurementIdentitySupportTarget.rspm.__impl"],
+    ios_minimum_os = "15.0",
+    macos_minimum_os = "10.15",
+    tvos_minimum_os = "15.0",
+    visibility = ["//:__subpackages__"],
+    visionos_minimum_os = "1.0",
+    watchos_minimum_os = "7.0",
+)
+
+spm_minimum_os_target(
+    name = "GoogleAppMeasurementTarget.rspm",
+    deps = [":GoogleAppMeasurementTarget.rspm.__impl"],
+    ios_minimum_os = "15.0",
+    macos_minimum_os = "10.15",
+    tvos_minimum_os = "15.0",
+    visibility = ["//:__subpackages__"],
+    visionos_minimum_os = "1.0",
+    watchos_minimum_os = "7.0",
+)
+
+swift_interop_hint(
+    name = "GoogleAppMeasurementCoreTarget.rspm_swift_hint",
+    module_map = "GoogleAppMeasurementCoreTarget.rspm_modulemap",
+    module_name = "GoogleAppMeasurementCoreTarget",
+)
+
+swift_interop_hint(
+    name = "GoogleAppMeasurementIdentitySupportTarget.rspm_swift_hint",
+    module_map = "GoogleAppMeasurementIdentitySupportTarget.rspm_modulemap",
+    module_name = "GoogleAppMeasurementIdentitySupportTarget",
+)
+
+swift_interop_hint(
+    name = "GoogleAppMeasurementTarget.rspm_swift_hint",
+    module_map = "GoogleAppMeasurementTarget.rspm_modulemap",
+    module_name = "GoogleAppMeasurementTarget",
+)
+
+swift_library_group(
+    name = "GoogleAppMeasurement",
+    deps = ["@swiftpkg_googleappmeasurement//:GoogleAppMeasurementTarget.rspm"],
+    visibility = ["//visibility:public"],
+)
+
+swift_library_group(
+    name = "GoogleAppMeasurementCore",
+    deps = ["@swiftpkg_googleappmeasurement//:GoogleAppMeasurementCoreTarget.rspm"],
+    visibility = ["//visibility:public"],
+)
+
+swift_library_group(
+    name = "GoogleAppMeasurementIdentitySupport",
+    deps = ["@swiftpkg_googleappmeasurement//:GoogleAppMeasurementIdentitySupportTarget.rspm"],
+    visibility = ["//visibility:public"],
+)
