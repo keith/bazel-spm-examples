@@ -80,10 +80,10 @@ apple_dynamic_xcframework_import(
 
 archive_override(
     module_name = "rules_apple",
-    integrity = "sha256-KThDAqlzs317yMtEg5UfuOYcIzBTw3pRl+ssN/G6iw8=",
-    strip_prefix = "rules_apple-fa73b6e06ab1937733f8d44ab0330b21509c87eb",
+    integrity = "sha256-u0V4MiqG/5qlynTKEfXlPouTgY2tox976CKc7A/YKNo=",
+    strip_prefix = "rules_apple-0df51e1cfccde8c0ab5cd8307f808b4d665de23b",
     urls = [
-        "https://github.com/bazelbuild/rules_apple/archive/fa73b6e06ab1937733f8d44ab0330b21509c87eb.tar.gz",
+        "https://github.com/bazelbuild/rules_apple/archive/0df51e1cfccde8c0ab5cd8307f808b4d665de23b.tar.gz",
     ],
 )
 
