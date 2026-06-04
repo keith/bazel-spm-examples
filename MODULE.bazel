@@ -3,13 +3,13 @@ module(
     version = "0.0.0",
 )
 
-bazel_dep(name = "apple_support", version = "2.5.4")
+bazel_dep(name = "apple_support", version = "2.6.1")
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "platforms", version = "1.1.0")
-bazel_dep(name = "rules_apple", version = "4.5.3")
-bazel_dep(name = "rules_cc", version = "0.2.18")
-bazel_dep(name = "rules_swift", version = "3.6.1")
-bazel_dep(name = "rules_swift_package_manager", version = "1.17.1")
+bazel_dep(name = "rules_apple", version = "5.0.0-rc1")
+bazel_dep(name = "rules_cc", version = "0.2.19")
+bazel_dep(name = "rules_swift", version = "4.0.0-rc1")
+bazel_dep(name = "rules_swift_package_manager", version = "1.18.1")
 
 bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.9.0", dev_dependency = True)
 bazel_dep(name = "gazelle", version = "0.51.0", dev_dependency = True)
@@ -75,23 +75,5 @@ apple_dynamic_xcframework_import(
     sha256 = "0dae35ca7542486a4186598394eb9b0d3ebe8402cedf5846af19cc44b89c9fb6",
     urls = [
         "https://github.com/getsentry/sentry-cocoa/releases/download/9.13.0/Sentry-Dynamic.xcframework.zip",
-    ],
-)
-
-archive_override(
-    module_name = "rules_apple",
-    integrity = "sha256-u0V4MiqG/5qlynTKEfXlPouTgY2tox976CKc7A/YKNo=",
-    strip_prefix = "rules_apple-0df51e1cfccde8c0ab5cd8307f808b4d665de23b",
-    urls = [
-        "https://github.com/bazelbuild/rules_apple/archive/0df51e1cfccde8c0ab5cd8307f808b4d665de23b.tar.gz",
-    ],
-)
-
-archive_override(
-    module_name = "rules_swift",
-    integrity = "sha256-43OBTh3U0Ml7EH/V7XlBNY8QMZIzx3lZh4tytEvO47w=",
-    strip_prefix = "rules_swift-ce0de97eea7287def102179290fa77095b105465",
-    urls = [
-        "https://github.com/bazelbuild/rules_swift/archive/ce0de97eea7287def102179290fa77095b105465.tar.gz",
     ],
 )
