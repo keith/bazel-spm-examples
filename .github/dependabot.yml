@@ -10,7 +10,7 @@ updates:
   - package-ecosystem: "bazel"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     ignore:
       - dependency-name: "rules_apple"
       - dependency-name: "rules_swift"
