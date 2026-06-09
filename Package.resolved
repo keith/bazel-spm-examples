@@ -82,6 +82,15 @@
       }
     },
     {
+      "identity" : "idkit-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/worldcoin/idkit-swift",
+      "state" : {
+        "revision" : "26ebc2a24e905816adbc939a55de6961b9ccfa7e",
+        "version" : "4.0.9"
+      }
+    },
+    {
       "identity" : "mapbox-common-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mapbox/mapbox-common-ios.git",

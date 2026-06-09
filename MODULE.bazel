@@ -8,7 +8,7 @@ bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "platforms", version = "1.1.0")
 bazel_dep(name = "rules_apple", version = "5.0.0-rc1")
 bazel_dep(name = "rules_cc", version = "0.2.19")
-bazel_dep(name = "rules_swift", version = "4.0.0-rc1")
+bazel_dep(name = "rules_swift", version = "4.0.0-rc2")
 bazel_dep(name = "rules_swift_package_manager", version = "1.18.1")
 
 bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.9.0", dev_dependency = True)
@@ -43,6 +43,7 @@ use_repo(
     "swiftpkg_facebook_ios_sdk",
     "swiftpkg_gtm_session_fetcher",
     "swiftpkg_gtmappauth",
+    "swiftpkg_idkit_swift",
     "swiftpkg_mapbox_maps_ios",
     "swiftpkg_misnap_ios",
     "swiftpkg_rxswift",
