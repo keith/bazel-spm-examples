@@ -1,0 +1,22 @@
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+load("//:apple_build_tests.bzl", "apple_build_tests")
+
+swift_library(
+    name = "FLEXExample",
+    srcs = ["FLEXExample.swift"],
+    module_name = "FLEXExample",
+    tags = ["manual"],
+    target_compatible_with = ["@platforms//os:ios"],
+    visibility = ["//visibility:public"],
+    deps = ["@swiftpkg_flex//:FLEX"],
+)
+
+apple_build_tests(
+    exclude = [
+        "macos",
+        "tvos",
+        "watchos",
+        "visionos",
+    ],
+    targets = [":FLEXExample"],
+)
