@@ -6,6 +6,10 @@ swift_library(
     testonly = True,
     srcs = ["RevealExampleTests.swift"],
     tags = ["manual"],
+    deps = [
+        # NOTE: This dep must be here and not on the ios_unit_test to force swift interop
+        "@swiftpkg_reveal_sdk//:RevealSDK",
+    ],
 )
 
 ios_unit_test(
@@ -16,8 +20,5 @@ ios_unit_test(
         "//:apple_build_tests_enabled": [],
         "//conditions:default": ["@platforms//:incompatible"],
     }),
-    deps = [
-        ":RevealExampleTestsLib",
-        "@swiftpkg_reveal_sdk//:RevealSDK",
-    ],
+    deps = [":RevealExampleTestsLib"],
 )
