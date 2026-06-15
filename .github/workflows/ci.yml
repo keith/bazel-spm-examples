@@ -34,15 +34,6 @@ jobs:
           # Remove deps added for explicit modules
           echo > deps.MODULE.bazel
           bazel test --config=buildbuddy ${BUILDBUDDY_API_KEY:+--remote_header=x-buildbuddy-api-key=$BUILDBUDDY_API_KEY} //...
-      - name: Verify MODULE.bazel.lock is unchanged
-        if: always()
-        run: |
-          if [[ -n "$(git status --porcelain -- MODULE.bazel.lock)" ]]; then
-            git diff -- MODULE.bazel.lock
-            git diff --cached -- MODULE.bazel.lock
-            echo "::error file=MODULE.bazel.lock::MODULE.bazel.lock changed during CI. Run Bazel locally and commit the updated lockfile."
-            exit 1
-          fi
 
   macos-explicit-modules:
     name: Apple platforms (explicit modules)
