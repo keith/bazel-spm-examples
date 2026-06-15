@@ -1,0 +1,15 @@
+load("@rules_apple//apple:apple.bzl", "apple_static_xcframework_import")
+
+apple_static_xcframework_import(
+    name = "SharpYuv",
+    xcframework_imports = glob(["libwebp-*-ios-framework/SharpYuv.xcframework/**"]),
+)
+
+apple_static_xcframework_import(
+    name = "WebP",
+    visibility = ["//visibility:public"],
+    xcframework_imports = glob(["libwebp-*-ios-framework/WebP.xcframework/**"]),
+    deps = [
+        "SharpYuv",
+    ],
+)
