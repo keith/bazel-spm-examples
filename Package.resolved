@@ -154,12 +154,12 @@
       }
     },
     {
-      "identity" : "opencombine",
+      "identity" : "reveal-sdk",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/OpenCombine/OpenCombine.git",
+      "location" : "https://github.com/ittybittyapps/reveal-sdk.git",
       "state" : {
-        "revision" : "8576f0d579b27020beccbccc3ea6844f3ddfc2c2",
-        "version" : "0.14.0"
+        "revision" : "669f7e9367b68655963261a75e47c43b4ed5f8f2",
+        "version" : "52.0.0"
       }
     },
     {

@@ -50,6 +50,7 @@ use_repo(
     "swiftpkg_gtmappauth",
     "swiftpkg_mapbox_maps_ios",
     "swiftpkg_misnap_ios",
+    "swiftpkg_reveal_sdk",
     "swiftpkg_rxswift",
     "swiftpkg_swift_algorithms",
     "swiftpkg_swift_argument_parser",
