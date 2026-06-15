@@ -82,3 +82,12 @@ apple_dynamic_xcframework_import(
         "https://github.com/getsentry/sentry-cocoa/releases/download/9.13.0/Sentry-Dynamic.xcframework.zip",
     ],
 )
+
+archive_override(
+    module_name = "rules_swift",
+    integrity = "sha256-iy7RCOltan+1O8izx5RTIE7UwrypzFQ7hXoIgkIgMdA=",
+    strip_prefix = "rules_swift-e7944a5349cd8d1d2326c05039bdba5d223b30b5",
+    urls = [
+        "https://github.com/bazelbuild/rules_swift/archive/e7944a5349cd8d1d2326c05039bdba5d223b30b5.tar.gz",
+    ],
+)
