@@ -1,0 +1,46 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("@rules_cc//cc:objc_library.bzl", "objc_library")
+load("@rules_swift//swift:swift.bzl", "swift_binary")
+load(":ios_forced_cpu_build_test.bzl", "ios_forced_cpu_build_test")
+
+swift_binary(
+    name = "OpenCVExample",
+    srcs = ["OpenCVExample.swift"],
+    module_name = "OpenCVExample",
+    tags = ["manual"],
+    target_compatible_with = ["@platforms//os:ios"],
+    visibility = ["//visibility:public"],
+    deps = [
+        # "//:opencv",
+        ":OpenCVObjCBridge",
+    ],
+)
+
+objc_library(
+    name = "OpenCVObjCBridge",
+    srcs = ["OpenCVObjCBridge.m"],
+    hdrs = ["OpenCVObjCBridge.h"],
+    enable_modules = True,
+    implementation_deps = [":OpenCVCppBridge"],
+    module_name = "OpenCVObjCBridgeModule",
+    sdk_frameworks = ["Foundation"],
+    tags = ["manual"],
+)
+
+cc_library(
+    name = "OpenCVCppBridge",
+    srcs = ["OpenCVCppBridge.cc"],
+    hdrs = ["OpenCVCppBridge.h"],
+    tags = ["manual"],
+    deps = ["//:opencv"],
+)
+
+ios_forced_cpu_build_test(
+    name = "ios_build_test",
+    exec_compatible_with = ["@platforms//os:macos"],
+    target = ":OpenCVExample",
+    target_compatible_with = select({
+        "//:apple_build_tests_enabled": [],
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
+)

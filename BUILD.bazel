@@ -1,5 +1,6 @@
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 load("@gazelle//:def.bzl", "gazelle", "gazelle_binary")
+load("@rules_apple//apple:apple.bzl", "apple_static_xcframework_import")
 load("@rules_swift_package_manager//swiftpkg:defs.bzl", "swift_package_tool")
 load("//:features_enabled.bzl", "features_enabled")
 
@@ -54,4 +55,21 @@ gazelle(
         "-swift_dependency_index=$(location @swift_deps_info//:swift_deps_index)",
     ],
     gazelle = ":gazelle_bin",
+)
+
+apple_static_xcframework_import(
+    name = "opencv",
+    sdk_frameworks = [
+        "AssetsLibrary",
+        "AVFoundation",
+        "CoreGraphics",
+        "CoreMedia",
+        "CoreVideo",
+        "Foundation",
+        "QuartzCore",
+        "UIKit",
+    ],
+    target_compatible_with = ["@platforms//os:ios"],
+    visibility = ["//visibility:public"],
+    xcframework_imports = glob(["opencv2.xcframework/**"]),
 )
