@@ -32,6 +32,10 @@ swift_deps.configure_package(
     name = "swiftpkg_googleappmeasurement",
     build_file = "//patches:googleappmeasurement.BUILD.bazel",
 )
+swift_deps.configure_package(
+    name = "swiftpkg_reveal_sdk",
+    build_file = "//patches:reveal_sdk.BUILD.bazel",
+)
 
 include("//:deps.MODULE.bazel")
 

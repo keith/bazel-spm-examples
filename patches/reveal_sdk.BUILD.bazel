@@ -1,0 +1,47 @@
+load("@build_bazel_rules_apple//apple:apple.bzl", "apple_dynamic_xcframework_import")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library_group")
+load("@rules_license//rules:package_info.bzl", "package_info")
+load("@rules_swift_package_manager//swiftpkg/internal:minimum_os_transition.bzl", "spm_minimum_os_target")
+
+package(
+    default_package_metadata = [":package_info.rspm"],
+)
+
+exports_files(["pkg_info.json"])
+
+apple_dynamic_xcframework_import(
+    name = "RevealSDKFramework.rspm.__impl",
+    tags = ["manual"],
+    visibility = ["//:__subpackages__"],
+    xcframework_imports = glob(
+        ["remote/archive/RevealServer-52.zip/RevealServer/RevealServer.xcframework/**"],
+        exclude = [
+            "**/Headers/**",
+            "**/Modules/**",
+        ],
+    ),
+)
+
+package_info(
+    name = "package_info.rspm",
+    package_name = "RevealSDK",
+    package_url = "https://github.com/ittybittyapps/reveal-sdk.git",
+    package_version = "52.0.0",
+)
+
+spm_minimum_os_target(
+    name = "RevealSDKFramework.rspm",
+    ios_minimum_os = "13.0",
+    macos_minimum_os = "14.0",
+    tvos_minimum_os = "13.0",
+    visibility = ["//:__subpackages__"],
+    visionos_minimum_os = "1.0",
+    watchos_minimum_os = "4.0",
+    deps = [":RevealSDKFramework.rspm.__impl"],
+)
+
+swift_library_group(
+    name = "RevealSDK",
+    visibility = ["//visibility:public"],
+    deps = ["@swiftpkg_reveal_sdk//:RevealSDKFramework.rspm"],
+)
