@@ -30,6 +30,12 @@ jobs:
           bazelisk-cache: true
           disk-cache: ${{ github.workflow }}-macos
           repository-cache: false
+      - name: Print Xcode diagnostics
+        run: |
+          echo "DEVELOPER_DIR=${DEVELOPER_DIR}"
+          xcode-select -p
+          xcodebuild -version
+          xcrun simctl list runtimes
       - run: |
           # Remove deps added for explicit modules
           echo > deps.MODULE.bazel
@@ -47,6 +53,12 @@ jobs:
           bazelisk-cache: true
           disk-cache: ${{ github.workflow }}-macos-explicit-modules
           repository-cache: false
+      - name: Print Xcode diagnostics
+        run: |
+          echo "DEVELOPER_DIR=${DEVELOPER_DIR}"
+          xcode-select -p
+          xcodebuild -version
+          xcrun simctl list runtimes
       - run: bazel test --config=explicit-modules --config=buildbuddy ${BUILDBUDDY_API_KEY:+--remote_header=x-buildbuddy-api-key=$BUILDBUDDY_API_KEY} //...
       - name: Verify MODULE.bazel.lock is unchanged
         if: always()
