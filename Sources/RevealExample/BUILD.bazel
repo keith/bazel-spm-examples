@@ -1,0 +1,24 @@
+load("@rules_apple//apple:ios.bzl", "ios_unit_test")
+load("@rules_swift//swift:swift_library.bzl", "swift_library")
+
+swift_library(
+    name = "RevealExampleTestsLib",
+    testonly = True,
+    srcs = ["RevealExampleTests.swift"],
+    tags = ["manual"],
+    deps = [
+        # NOTE: This dep must be here and not on the ios_unit_test to force swift interop
+        "@swiftpkg_reveal_sdk//:RevealSDK",
+    ],
+)
+
+ios_unit_test(
+    name = "RevealExampleTests",
+    bundle_id = "com.example.reveal.tests",
+    minimum_os_version = "18.0",
+    target_compatible_with = select({
+        "//:apple_build_tests_enabled": [],
+        "//conditions:default": ["@platforms//:incompatible"],
+    }),
+    deps = [":RevealExampleTestsLib"],
+)

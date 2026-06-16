@@ -32,6 +32,10 @@ swift_deps.configure_package(
     name = "swiftpkg_googleappmeasurement",
     build_file = "//patches:googleappmeasurement.BUILD.bazel",
 )
+swift_deps.configure_package(
+    name = "swiftpkg_reveal_sdk",
+    build_file = "//patches:reveal_sdk.BUILD.bazel",
+)
 
 include("//:deps.MODULE.bazel")
 
@@ -50,6 +54,7 @@ use_repo(
     "swiftpkg_gtmappauth",
     "swiftpkg_mapbox_maps_ios",
     "swiftpkg_misnap_ios",
+    "swiftpkg_reveal_sdk",
     "swiftpkg_rxswift",
     "swiftpkg_swift_algorithms",
     "swiftpkg_swift_argument_parser",

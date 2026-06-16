@@ -580,12 +580,12 @@
     "@@rules_swift_package_manager+//:extensions.bzl%swift_deps": {
       "general": {
         "bzlTransitiveDigest": "WLqoi29c8XUgPo7uYa9ChpMJhaZvAJGvgjQ0kAg4bKs=",
-        "usagesDigest": "EXdQEDWffgSNJ8c53WjDjgDWs+l1Yl63YocDjTvza1s=",
+        "usagesDigest": "4Q4brIUtBiDdwjpivoEZPOBqo0egDlNkFKKVHYBxEpg=",
         "recordedInputs": [
           "REPO_MAPPING:rules_swift_package_manager+,bazel_skylib bazel_skylib+",
           "REPO_MAPPING:rules_swift_package_manager+,bazel_tools bazel_tools",
           "REPO_MAPPING:rules_swift_package_manager+,cgrindel_bazel_starlib cgrindel_bazel_starlib+",
-          "FILE:@@//Package.resolved cb293d60142ba3371b44b420ba89c0ddfa7da29e8175ebb720fb25726b8d98ca"
+          "FILE:@@//Package.resolved 649d053633ac76aa78870452019a6bce701430b9521347defe2802c9bdf18d69"
         ],
         "generatedRepoSpecs": {
           "swift_deps_info": {
@@ -614,6 +614,7 @@
                 "@swiftpkg_misnap_ios//:pkg_info.json": "misnap-ios",
                 "@swiftpkg_appauth_ios//:pkg_info.json": "appauth-ios",
                 "@swiftpkg_rxswift//:pkg_info.json": "rxswift",
+                "@swiftpkg_reveal_sdk//:pkg_info.json": "reveal-sdk",
                 "@swiftpkg_aardvark//:pkg_info.json": "aardvark"
               }
             }
@@ -1022,6 +1023,31 @@
               "target_deps": {}
             }
           },
+          "swiftpkg_reveal_sdk": {
+            "repoRuleId": "@@rules_swift_package_manager+//swiftpkg/internal:swift_package.bzl%swift_package",
+            "attributes": {
+              "bazel_package_name": "swiftpkg_reveal_sdk",
+              "commit": "669f7e9367b68655963261a75e47c43b4ed5f8f2",
+              "remote": "https://github.com/ittybittyapps/reveal-sdk.git",
+              "version": "52.0.0",
+              "build_file": "@@//patches:reveal_sdk.BUILD.bazel",
+              "env": {},
+              "env_inherit": [],
+              "cached_json_directory": "",
+              "init_submodules": false,
+              "recursive_init_submodules": true,
+              "patch_args": [
+                "-p0"
+              ],
+              "patch_cmds": [],
+              "patch_cmds_win": [],
+              "patch_tool": "",
+              "patches": [],
+              "publicly_expose_all_targets": false,
+              "replace_scm_with_registry": false,
+              "target_deps": {}
+            }
+          },
           "swiftpkg_aardvark": {
             "repoRuleId": "@@rules_swift_package_manager+//swiftpkg/internal:swift_package.bzl%swift_package",
             "attributes": {
@@ -1141,20 +1167,6 @@
               "commit": "b7e1104502eca3a213b46303391ca4d3bc8ddec1",
               "remote": "https://github.com/firebase/nanopb.git",
               "version": "2.30910.0",
-              "env": {},
-              "env_inherit": [],
-              "cached_json_directory": "",
-              "replace_scm_with_registry": false,
-              "target_deps": {}
-            }
-          },
-          "swiftpkg_opencombine": {
-            "repoRuleId": "@@rules_swift_package_manager+//swiftpkg/internal:swift_package.bzl%swift_package",
-            "attributes": {
-              "bazel_package_name": "swiftpkg_opencombine",
-              "commit": "8576f0d579b27020beccbccc3ea6844f3ddfc2c2",
-              "remote": "https://github.com/OpenCombine/OpenCombine.git",
-              "version": "0.14.0",
               "env": {},
               "env_inherit": [],
               "cached_json_directory": "",
@@ -1397,6 +1409,7 @@
             "swiftpkg_misnap_ios",
             "swiftpkg_appauth_ios",
             "swiftpkg_rxswift",
+            "swiftpkg_reveal_sdk",
             "swiftpkg_aardvark",
             "swift_deps_info",
             "swift_package"

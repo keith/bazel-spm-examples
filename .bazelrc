@@ -15,6 +15,9 @@ build:linux --//:apple_build_tests=false
 build --test_output=errors
 build --verbose_failures
 
+build --@rules_apple//apple/build_settings:ios_simulator_device="iPhone 16"
+build --@rules_apple//apple/build_settings:ios_simulator_version=26.5
+
 build --macos_minimum_os=13.0 --host_macos_minimum_os=13.0
 
 build:explicit-modules --features=swift.use_c_modules --features=swift.emit_c_module --features=swift.use_explicit_swift_module_map
