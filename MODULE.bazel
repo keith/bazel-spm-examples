@@ -100,6 +100,9 @@ archive_override(
 http_archive(
     name = "WebP",
     build_file = "//patches:webp.BUILD.bazel",
+    patch_cmds = [
+        'for dir in libwebp-*-ios-framework/SharpYuv.xcframework/*/Headers/SharpYuv; do tmp="${dir}.tmp-lowercase"; mv "${dir}" "${tmp}"; mv "${tmp}" "${dir%/SharpYuv}/sharpyuv"; done',
+    ],
     sha256 = "779fcb78294e59f393319c0f9bf2e1126f9479e862a22fe50bc50d9489c15cd3",
     url = "https://storage.googleapis.com/downloads.webmproject.org/releases/webp/libwebp-1.4.0-ios-framework.tar.gz",
 )
