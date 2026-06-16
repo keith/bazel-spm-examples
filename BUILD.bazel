@@ -59,6 +59,7 @@ gazelle(
 
 apple_static_xcframework_import(
     name = "opencv",
+    aspect_hints = ["@rules_swift//swift:no_module"],
     sdk_frameworks = [
         "AssetsLibrary",
         "AVFoundation",
