@@ -579,13 +579,13 @@
     },
     "@@rules_swift_package_manager+//:extensions.bzl%swift_deps": {
       "general": {
-        "bzlTransitiveDigest": "WLqoi29c8XUgPo7uYa9ChpMJhaZvAJGvgjQ0kAg4bKs=",
-        "usagesDigest": "4Q4brIUtBiDdwjpivoEZPOBqo0egDlNkFKKVHYBxEpg=",
+        "bzlTransitiveDigest": "Rbow8uQMZRn67zLotKBXj8PryRWVlAkftIhfbtzZ04M=",
+        "usagesDigest": "aX7QNF1JtcIhcY+ZC4EuDFEXJYOYRzh0c37/zG+7SKo=",
         "recordedInputs": [
           "REPO_MAPPING:rules_swift_package_manager+,bazel_skylib bazel_skylib+",
           "REPO_MAPPING:rules_swift_package_manager+,bazel_tools bazel_tools",
           "REPO_MAPPING:rules_swift_package_manager+,cgrindel_bazel_starlib cgrindel_bazel_starlib+",
-          "FILE:@@//Package.resolved 649d053633ac76aa78870452019a6bce701430b9521347defe2802c9bdf18d69"
+          "FILE:@@//Package.resolved 154da8776ee09a19efb1ffa91878d9e8d5280a06c7ef43b1847a137c3b43ab1e"
         ],
         "generatedRepoSpecs": {
           "swift_deps_info": {
@@ -613,6 +613,7 @@
                 "@swiftpkg_mapbox_maps_ios//:pkg_info.json": "mapbox-maps-ios",
                 "@swiftpkg_misnap_ios//:pkg_info.json": "misnap-ios",
                 "@swiftpkg_appauth_ios//:pkg_info.json": "appauth-ios",
+                "@swiftpkg_yoga//:pkg_info.json": "yoga",
                 "@swiftpkg_rxswift//:pkg_info.json": "rxswift",
                 "@swiftpkg_reveal_sdk//:pkg_info.json": "reveal-sdk",
                 "@swiftpkg_aardvark//:pkg_info.json": "aardvark"
@@ -1005,6 +1006,32 @@
               "env": {},
               "env_inherit": [],
               "cached_json_directory": "",
+              "replace_scm_with_registry": false,
+              "target_deps": {}
+            }
+          },
+          "swiftpkg_yoga": {
+            "repoRuleId": "@@rules_swift_package_manager+//swiftpkg/internal:swift_package.bzl%swift_package",
+            "attributes": {
+              "bazel_package_name": "swiftpkg_yoga",
+              "commit": "042f5013152eb81c1552dec945b88f7b95ca350f",
+              "remote": "https://github.com/react/yoga",
+              "version": "3.2.1",
+              "env": {},
+              "env_inherit": [],
+              "cached_json_directory": "",
+              "init_submodules": false,
+              "recursive_init_submodules": true,
+              "patch_args": [
+                "-p1"
+              ],
+              "patch_cmds": [],
+              "patch_cmds_win": [],
+              "patch_tool": "",
+              "patches": [
+                "@@//patches:yoga_package.patch"
+              ],
+              "publicly_expose_all_targets": false,
               "replace_scm_with_registry": false,
               "target_deps": {}
             }
@@ -1408,6 +1435,7 @@
             "swiftpkg_mapbox_maps_ios",
             "swiftpkg_misnap_ios",
             "swiftpkg_appauth_ios",
+            "swiftpkg_yoga",
             "swiftpkg_rxswift",
             "swiftpkg_reveal_sdk",
             "swiftpkg_aardvark",
