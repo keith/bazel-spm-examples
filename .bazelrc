@@ -1,11 +1,14 @@
 common --enable_platform_specific_config
 
+common --flag_alias=swiftcopt=@rules_swift//swift:copt
+common --flag_alias=host_swiftcopt=@rules_swift//swift:exec_copt
+
 # Make sure PCM warnings are treated as errors
-build --@rules_swift//swift:copt=-Xcc --@rules_swift//swift:copt=-Werror
+build --swiftcopt=-Xcc --swiftcopt=-Werror
 build --features=treat_warnings_as_errors
 
 # Build perf for SwiftSyntax, shouldn't affect other things
-build --@rules_swift//swift:copt=-wmo --@rules_swift//swift:exec_copt=-wmo
+build --swiftcopt=-wmo --swiftcopt=-wmo
 
 # Make sure we can find swiftc
 build:linux --repo_env=PATH --action_env=PATH --host_action_env=PATH
