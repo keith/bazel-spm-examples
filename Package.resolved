@@ -109,6 +109,15 @@
       }
     },
     {
+      "identity" : "ios-library",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/urbanairship/ios-library",
+      "state" : {
+        "revision" : "b7adc1fad1085899fe54f07f83adc7f37e31a30b",
+        "version" : "20.11.0"
+      }
+    },
+    {
       "identity" : "mapbox-common-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mapbox/mapbox-common-ios.git",
