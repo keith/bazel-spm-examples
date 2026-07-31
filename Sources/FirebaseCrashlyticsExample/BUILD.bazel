@@ -1,0 +1,42 @@
+load("@rules_swift//swift:swift.bzl", "swift_binary")
+load("//:apple_build_tests.bzl", "apple_build_tests")
+
+# Builds with implicit modules, but fails with `--config=explicit-modules`:
+#
+#   Precompiling C module @@...+swiftpkg_firebase_ios_sdk//:FirebaseCrashlytics.rspm_c failed
+#   <unknown>:0: error: unable to handle compilation, expected exactly one compiler job
+#
+# firebase-ios-sdk's FirebaseCrashlytics target declares
+#
+#   .define("CLS_SDK_NAME", to: "Crashlytics iOS SDK", .when(platforms: [.iOS]))
+#
+# Bazel applies Bourne shell tokenization to `copts` on C/Objective-C rules, so
+# a define whose value contains spaces has to arrive backslash-escaped, and
+# rules_swift_package_manager emits exactly that:
+#
+#   copts = ["-DCLS_SDK_NAME=Crashlytics\\ iOS\\ SDK"]
+#
+# rules_swift's swift_clang_module_aspect then harvests raw `-D` copts as
+# `user_compile_flags` for the PCM action without re-tokenizing them, and the
+# trip through `-Xcc` into the ClangImporter lexes them a second time. The
+# escaped value collapses into a single `'-DCLS_SDK_NAME=Crashlytics iOS SDK'`
+# token -- quote characters included -- which clang treats as an input file
+# rather than a flag. That leaves the driver with two inputs, so it produces two
+# compiler jobs, and the PCM fails.
+swift_binary(
+    name = "firebase_crashlytics_example",
+    srcs = ["main.swift"],
+    tags = ["manual"],
+    target_compatible_with = ["@platforms//os:ios"],
+    deps = ["@swiftpkg_firebase_ios_sdk//:FirebaseCrashlytics"],
+)
+
+apple_build_tests(
+    exclude = [
+        "macos",
+        "tvos",
+        "watchos",
+        "visionos",
+    ],
+    targets = [":firebase_crashlytics_example"],
+)

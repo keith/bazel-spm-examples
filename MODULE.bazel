@@ -29,6 +29,11 @@ swift_deps.from_package(
     swift = "//:Package.swift",
 )
 swift_deps.configure_package(
+    name = "firebase-ios-sdk",
+    patch_args = ["-p1"],
+    patches = ["//patches:firebase_core_module_deps.patch"],
+)
+swift_deps.configure_package(
     name = "swiftpkg_googleappmeasurement",
     build_file = "//patches:googleappmeasurement.BUILD.bazel",
 )
@@ -49,6 +54,7 @@ use_repo(
     "swiftpkg_braintree_ios",
     "swiftpkg_braze_swift_sdk",
     "swiftpkg_facebook_ios_sdk",
+    "swiftpkg_firebase_ios_sdk",
     "swiftpkg_googleappmeasurement",
     "swiftpkg_gtm_session_fetcher",
     "swiftpkg_gtmappauth",
