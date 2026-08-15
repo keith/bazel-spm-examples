@@ -1,0 +1,22 @@
+From 8bec690f98408f1095d63bc7f65c9e32a5a46bca Mon Sep 17 00:00:00 2001
+From: Karim Alweheshy <karim.alweheshy@reddit.com>
+Date: Mon, 20 Jan 2025 22:35:40 +0100
+Subject: [PATCH] Remove duplicated srcs
+
+---
+ swiftpkg/internal/clang_files.bzl | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/swiftpkg/internal/clang_files.bzl b/swiftpkg/internal/clang_files.bzl
+index 1fe0790c1..1bbb66afa 100644
+--- a/swiftpkg/internal/clang_files.bzl
++++ b/swiftpkg/internal/clang_files.bzl
+@@ -253,7 +253,7 @@ def _collect_files(
+ 
+     modulemap = None
+     modulemap_orig_path = None
+-    for orig_path in all_srcs:
++    for orig_path in depset(all_srcs).to_list():
+         path = _relativize(orig_path, relative_to)
+         _root, ext = paths.split_extension(path)
+         if lists.contains(_TEXTUAL_HDR_EXTS, ext):

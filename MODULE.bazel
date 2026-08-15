@@ -8,7 +8,7 @@ bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "platforms", version = "1.1.0")
 bazel_dep(name = "rules_apple", version = "5.0.0-rc2")
 bazel_dep(name = "rules_cc", version = "0.2.19")
-bazel_dep(name = "rules_swift", version = "4.0.0-rc3")
+bazel_dep(name = "rules_swift", version = "4.0.0-rc4")
 bazel_dep(name = "rules_swift_package_manager", version = "1.19.0")
 
 bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.9.0", dev_dependency = True)
@@ -18,6 +18,14 @@ bazel_dep(name = "swift_gazelle_plugin", version = "0.2.2", dev_dependency = Tru
 system_sdk = use_extension("@rules_swift//swift:extensions.bzl", "system_sdk")
 system_sdk.configure_sdks(include_all = True)
 use_repo(system_sdk, "system_sdk")
+
+single_version_override(
+    module_name = "rules_swift_package_manager",
+    patch_strip = 1,
+    patches = [
+        "//patches:rspm_duplicate_srcs.patch",
+    ],
+)
 
 swift_deps = use_extension(
     "@rules_swift_package_manager//:extensions.bzl",
@@ -35,6 +43,13 @@ swift_deps.configure_package(
 swift_deps.configure_package(
     name = "swiftpkg_reveal_sdk",
     build_file = "//patches:reveal_sdk.BUILD.bazel",
+)
+swift_deps.configure_package(
+    name = "swiftpkg_yoga",
+    patch_args = ["-p1"],
+    patches = [
+        "//patches:yoga_package.patch",
+    ],
 )
 
 include("//:deps.MODULE.bazel")
@@ -67,6 +82,7 @@ use_repo(
     "swiftpkg_swift_perception",
     "swiftpkg_swift_snapshot_testing",
     "swiftpkg_swift_syntax",
+    "swiftpkg_yoga",
 )
 
 http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")

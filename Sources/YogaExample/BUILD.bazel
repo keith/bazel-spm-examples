@@ -1,0 +1,14 @@
+load("@rules_swift//swift:swift.bzl", "swift_binary")
+load("//:apple_build_tests.bzl", "apple_build_tests")
+
+swift_binary(
+    name = "yoga_example",
+    srcs = ["YogaExample.swift"],
+    tags = ["manual"],
+    target_compatible_with = ["@platforms//os:ios"],
+    deps = [
+        "@swiftpkg_yoga//:yoga",
+    ],
+)
+
+apple_build_tests(targets = [":yoga_example"])

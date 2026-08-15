@@ -1,0 +1,27 @@
+From 7fe2a0ea74e63e8a53aa217f102ed363158ac875 Mon Sep 17 00:00:00 2001
+From: Karim Alweheshy <karim.alweheshy@reddit.com>
+Date: Tue, 21 Jan 2025 11:20:09 +0100
+Subject: [PATCH] remove non yoga search paths
+
+---
+ Package.swift | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/Package.swift b/Package.swift
+index 15f94268cb..b65a0ceca6 100644
+--- a/Package.swift
++++ b/Package.swift
+@@ -19,6 +19,13 @@ let package = Package(
+         .target(
+             name: "yogacore",
+             path: ".",
++            exclude: [
++              "capture",
++              "benchmark",
++              "javascript",
++              "java",
++              "tests",
++            ],
+             sources: [
+                 "yoga"
+             ],
