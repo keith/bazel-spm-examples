@@ -52,6 +52,7 @@ use_repo(
     "swiftpkg_googleappmeasurement",
     "swiftpkg_gtm_session_fetcher",
     "swiftpkg_gtmappauth",
+    "swiftpkg_idkit_swift",
     "swiftpkg_mapbox_maps_ios",
     "swiftpkg_misnap_ios",
     "swiftpkg_reveal_sdk",

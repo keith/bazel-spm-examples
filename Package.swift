@@ -31,5 +31,6 @@ let package = Package(
         .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.7.0"),
         .package(url: "https://github.com/ittybittyapps/reveal-sdk.git", exact: "52.0.0"),
         .package(url: "https://github.com/square/Aardvark", from: "5.1.0"),
+        .package(url: "https://github.com/worldcoin/idkit-swift", from: "4.0.9"),
     ]
 )
