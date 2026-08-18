@@ -593,7 +593,7 @@
           "REPO_MAPPING:rules_swift_package_manager+,bazel_skylib bazel_skylib+",
           "REPO_MAPPING:rules_swift_package_manager+,bazel_tools bazel_tools",
           "REPO_MAPPING:rules_swift_package_manager+,cgrindel_bazel_starlib cgrindel_bazel_starlib+",
-          "FILE:@@//Package.resolved 649d053633ac76aa78870452019a6bce701430b9521347defe2802c9bdf18d69"
+          "FILE:@@//Package.resolved 409389b8f08f31fa7c8151db5648460251fd35c907e310f67c7d75076fb5f996"
         ],
         "generatedRepoSpecs": {
           "swift_deps_info": {
@@ -623,7 +623,8 @@
                 "@swiftpkg_appauth_ios//:pkg_info.json": "appauth-ios",
                 "@swiftpkg_rxswift//:pkg_info.json": "rxswift",
                 "@swiftpkg_reveal_sdk//:pkg_info.json": "reveal-sdk",
-                "@swiftpkg_aardvark//:pkg_info.json": "aardvark"
+                "@swiftpkg_aardvark//:pkg_info.json": "aardvark",
+                "@swiftpkg_ios_library//:pkg_info.json": "ios-library"
               }
             }
           },
@@ -1070,6 +1071,20 @@
               "target_deps": {}
             }
           },
+          "swiftpkg_ios_library": {
+            "repoRuleId": "@@rules_swift_package_manager+//swiftpkg/internal:swift_package.bzl%swift_package",
+            "attributes": {
+              "bazel_package_name": "swiftpkg_ios_library",
+              "commit": "b7adc1fad1085899fe54f07f83adc7f37e31a30b",
+              "remote": "https://github.com/urbanairship/ios-library",
+              "version": "20.11.0",
+              "env": {},
+              "env_inherit": [],
+              "cached_json_directory": "",
+              "replace_scm_with_registry": false,
+              "target_deps": {}
+            }
+          },
           "swiftpkg_combine_schedulers": {
             "repoRuleId": "@@rules_swift_package_manager+//swiftpkg/internal:swift_package.bzl%swift_package",
             "attributes": {
@@ -1419,6 +1434,7 @@
             "swiftpkg_rxswift",
             "swiftpkg_reveal_sdk",
             "swiftpkg_aardvark",
+            "swiftpkg_ios_library",
             "swift_deps_info",
             "swift_package"
           ],
