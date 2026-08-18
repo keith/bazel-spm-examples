@@ -1,0 +1,42 @@
+Prerequisite fixes so the FirebaseCrashlytics example isolates the
+CLS_SDK_NAME failure. Without these, the build stops earlier on unrelated
+explicit-module problems in the same package.
+
+1. The umbrella `Firebase` target's header does
+   `#import <FirebaseCore/FirebaseCore.h>` but the target declares no deps, so
+   `Firebase.pcm` fails with `'FirebaseCore/FirebaseCore.h' file not found`.
+   Declare the dep, and drop the reverse `Firebase` edge from `FirebaseCore`
+   to keep SwiftPM from seeing a cycle. That edge only re-exports the umbrella
+   header; FirebaseCore's sources never import anything from `Firebase`.
+
+2. `FirebaseCoreExtension` has the same problem via
+   `#import <FirebaseCore/FIRApp.h>`. Upstream's own comment on the target
+   already tells consumers to depend on `FirebaseCore` alongside it.
+
+diff --git a/Package.swift b/Package.swift
+--- a/Package.swift
++++ b/Package.swift
+@@ -177,6 +177,7 @@
+   targets: [
+     .target(
+       name: "Firebase",
++      dependencies: ["FirebaseCore"],
+       path: "CoreOnly/Sources",
+       publicHeadersPath: "./"
+     ),
+@@ -235,7 +236,6 @@
+     .target(
+       name: "FirebaseCore",
+       dependencies: [
+-        "Firebase",
+         "FirebaseCoreInternal",
+         .product(name: "GULEnvironment", package: "GoogleUtilities"),
+         .product(name: "GULLogger", package: "GoogleUtilities"),
+@@ -274,6 +274,7 @@
+     // to avoid potential linker issues.
+     .target(
+       name: "FirebaseCoreExtension",
++      dependencies: ["FirebaseCore"],
+       path: "FirebaseCore/Extension",
+       resources: [.process("Resources/PrivacyInfo.xcprivacy")],
+       publicHeadersPath: ".",

@@ -7,6 +7,11 @@ common --flag_alias=host_swiftcopt=@rules_swift//swift:exec_copt
 build --swiftcopt=-Xcc --swiftcopt=-Werror
 build --features=treat_warnings_as_errors
 
+# firebase-ios-sdk's Crashlytics sources use `#pragma clang diagnostic ignored`
+# for diagnostics this clang doesn't know about, which trips the -Werror above.
+# Not what the Firebase example is demonstrating, so scope it away.
+build --per_file_copt=.*swiftpkg_firebase_ios_sdk.*@-Wno-unknown-pragmas
+
 # Build perf for SwiftSyntax, shouldn't affect other things
 build --swiftcopt=-wmo --swiftcopt=-wmo
 
