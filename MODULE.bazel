@@ -19,6 +19,10 @@ system_sdk = use_extension("@rules_swift//swift:extensions.bzl", "system_sdk")
 system_sdk.configure_sdks(
     # NOTE: This doesn't apply to downstream repos
     exclude_modules = {
+        "MacOSX": [
+            "CoreAudio_Private",  # TODO: Remove once CI >= Xcode 26.4
+            "MobileGestaltPrivate",
+        ],
         "AppleTVOS": [
             "CoreAudio_Private",  # TODO: Remove once CI >= Xcode 26.4
             "MobileGestaltPrivate",
