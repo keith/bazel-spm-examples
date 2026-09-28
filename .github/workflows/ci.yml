@@ -20,7 +20,7 @@ env:
 jobs:
   macos:
     name: Apple platforms
-    runs-on: macos-26
+    runs-on: xcode-27-xlarge
     env:
       DEVELOPER_DIR: /Applications/Xcode_27.0.0.app/Contents/Developer
     steps:
@@ -43,7 +43,7 @@ jobs:
 
   macos-explicit-modules:
     name: Apple platforms (explicit modules)
-    runs-on: macos-26
+    runs-on: xcode-27-xlarge
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.4.1.app/Contents/Developer
     steps:
