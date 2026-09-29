@@ -19,9 +19,9 @@
     "https://bcr.bazel.build/modules/apple_support/1.21.1/MODULE.bazel": "5809fa3efab15d1f3c3c635af6974044bac8a4919c62238cce06acee8a8c11f1",
     "https://bcr.bazel.build/modules/apple_support/1.24.2/MODULE.bazel": "0e62471818affb9f0b26f128831d5c40b074d32e6dda5a0d3852847215a41ca4",
     "https://bcr.bazel.build/modules/apple_support/2.6.1/MODULE.bazel": "b268db2f0642f6f2cb56fb08e3926ab6541b9996d9dd655b8c838b694e3ceeee",
+    "https://bcr.bazel.build/modules/apple_support/2.8.0/MODULE.bazel": "c45f5176057092afba0be6c48a9ea02101666802f8be536947e099e94757f8ed",
     "https://bcr.bazel.build/modules/apple_support/2.8.3/MODULE.bazel": "4afffdeb3a37825fdae637efb14ead4de27fe6310dbae96d071059e4e7b2e431",
-    "https://bcr.bazel.build/modules/apple_support/2.8.4/MODULE.bazel": "83ae0682db2a4ea86d20416a9b3bdba7f6c2a81e136b4d210e5986e30436585e",
-    "https://bcr.bazel.build/modules/apple_support/2.8.4/source.json": "1c9c86472ed56669622b46e2ddfeb36f58e1234cea73d52740f09de58e93ec6e",
+    "https://bcr.bazel.build/modules/apple_support/2.8.3/source.json": "f582aac2b2790d885c1dadca62f59de1665df98e4d83c28a1e8d2fd017776880",
     "https://bcr.bazel.build/modules/aspect_bazel_lib/2.13.0/MODULE.bazel": "af4a546cb88c618f2e241721d2d76b70b7ecfaa1d58fe27b9187d3edb9e418da",
     "https://bcr.bazel.build/modules/aspect_bazel_lib/2.14.0/MODULE.bazel": "2b31ffcc9bdc8295b2167e07a757dbbc9ac8906e7028e5170a3708cecaac119f",
     "https://bcr.bazel.build/modules/aspect_bazel_lib/2.19.3/MODULE.bazel": "253d739ba126f62a5767d832765b12b59e9f8d2bc88cc1572f4a73e46eb298ca",
@@ -596,7 +596,7 @@
           "REPO_MAPPING:rules_swift_package_manager+,bazel_skylib bazel_skylib+",
           "REPO_MAPPING:rules_swift_package_manager+,bazel_tools bazel_tools",
           "REPO_MAPPING:rules_swift_package_manager+,cgrindel_bazel_starlib cgrindel_bazel_starlib+",
-          "FILE:@@//Package.resolved 409389b8f08f31fa7c8151db5648460251fd35c907e310f67c7d75076fb5f996"
+          "FILE:@@//Package.resolved fc3d4047de8e6890dcf248f235b556499b4d109b05eadbd72ea7d8776f79e493"
         ],
         "generatedRepoSpecs": {
           "swift_deps_info": {
@@ -754,9 +754,9 @@
             "repoRuleId": "@@rules_swift_package_manager+//swiftpkg/internal:swift_package.bzl%swift_package",
             "attributes": {
               "bazel_package_name": "swiftpkg_swift_composable_architecture",
-              "commit": "1eaa6fa2ee57ac42843283b9fd3457af408c858d",
+              "commit": "ead11e04e5011c437722c1990d22f80d87056978",
               "remote": "https://github.com/pointfreeco/swift-composable-architecture",
-              "version": "1.25.5",
+              "version": "1.26.1",
               "env": {},
               "env_inherit": [],
               "cached_json_directory": "",
