@@ -145,6 +145,8 @@ apple_dynamic_xcframework_import(
 archive_override(
     module_name = "rules_swift",
     integrity = "sha256-HZUbHlWbieQMp9cDuwdvKuLSGhSSG8MqrTS2GEkGhyA=",
+    patch_strip = 1,
+    patches = ["//patches:rules_swift_preload_module_maps.patch"],
     strip_prefix = "rules_swift-f765fda9083bc88c74c47f48b496d32664445e28",
     urls = [
         "https://github.com/bazelbuild/rules_swift/archive/f765fda9083bc88c74c47f48b496d32664445e28.tar.gz",
