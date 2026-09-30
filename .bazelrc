@@ -1,4 +1,5 @@
 common --enable_platform_specific_config
+common --module_mirrors=https://bcr.cloudflaremirrors.com
 
 common --flag_alias=swiftcopt=@rules_swift//swift:copt
 common --flag_alias=host_swiftcopt=@rules_swift//swift:exec_copt
