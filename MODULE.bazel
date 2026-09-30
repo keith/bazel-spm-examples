@@ -6,7 +6,7 @@ module(
 bazel_dep(name = "apple_support", version = "2.6.1")
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "platforms", version = "1.1.0")
-bazel_dep(name = "rules_apple", version = "5.0.0-rc2")
+bazel_dep(name = "rules_apple", version = "5.2.0")
 bazel_dep(name = "rules_cc", version = "0.2.19")
 bazel_dep(name = "rules_swift", version = "4.0.0-rc3")
 bazel_dep(name = "rules_swift_package_manager", version = "1.19.0")
@@ -16,7 +16,60 @@ bazel_dep(name = "gazelle", version = "0.51.3", dev_dependency = True)
 bazel_dep(name = "swift_gazelle_plugin", version = "0.2.2", dev_dependency = True)
 
 system_sdk = use_extension("@rules_swift//swift:extensions.bzl", "system_sdk")
-system_sdk.configure_sdks(include_all = True)
+system_sdk.configure_sdks(
+    # NOTE: This doesn't apply to downstream repos
+    exclude_modules = {
+        "MacOSX": [
+            "CoreAudio_Private",  # TODO: Remove once CI >= Xcode 26.4
+            "MobileGestaltPrivate",
+        ],
+        "AppleTVOS": [
+            "CoreAudio_Private",  # TODO: Remove once CI >= Xcode 26.4
+            "MobileGestaltPrivate",
+            # Xcode 27.2 ships these overlays without their tvOS dependencies.
+            "_AppIntents_HealthKit",
+            "_Contacts_AppIntents",
+        ],
+        "AppleTVSimulator": [
+            "CoreAudio_Private",  # TODO: Remove once CI >= Xcode 26.4
+            "MobileGestaltPrivate",
+            # Xcode 27.2 ships these overlays without their tvOS dependencies.
+            "_AppIntents_HealthKit",
+            "_Contacts_AppIntents",
+        ],
+        "iPhoneSimulator": [
+            "AssetsLibrary",  #  TODO: Remove once CI >= Xcode 26.4
+            "CoreAudio_Private",
+            "MobileGestaltPrivate",
+        ],
+        "iPhoneOS": [
+            "AssetsLibrary",  #  TODO: Remove once CI >= Xcode 26.4
+            "CoreAudio_Private",  # TODO: Remove once CI >= Xcode 26.4
+            "MobileGestaltPrivate",
+        ],
+        "XROS": [
+            "AccessoryTransportExtension",
+            "CoreAudio_Private",  # TODO: Remove once CI >= Xcode 26.4
+            "MobileGestaltPrivate",
+        ],
+        "XRSimulator": [
+            "AccessoryTransportExtension",
+            "CoreAudio_Private",  # TODO: Remove once CI >= Xcode 26.4
+            "MobileGestaltPrivate",
+        ],
+        "WatchOS": [
+            "BrowserEngineKit",
+            "CoreAudio_Private",  # TODO: Remove once CI >= Xcode 26.4
+            "MobileGestaltPrivate",
+        ],
+        "WatchSimulator": [
+            "BrowserEngineKit",
+            "CoreAudio_Private",  # TODO: Remove once CI >= Xcode 26.4
+            "MobileGestaltPrivate",
+        ],
+    },
+    include_all = True,
+)
 use_repo(system_sdk, "system_sdk")
 
 swift_deps = use_extension(
@@ -92,6 +145,8 @@ apple_dynamic_xcframework_import(
 archive_override(
     module_name = "rules_swift",
     integrity = "sha256-HZUbHlWbieQMp9cDuwdvKuLSGhSSG8MqrTS2GEkGhyA=",
+    patch_strip = 1,
+    patches = ["//patches:rules_swift_preload_module_maps.patch"],
     strip_prefix = "rules_swift-f765fda9083bc88c74c47f48b496d32664445e28",
     urls = [
         "https://github.com/bazelbuild/rules_swift/archive/f765fda9083bc88c74c47f48b496d32664445e28.tar.gz",
