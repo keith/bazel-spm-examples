@@ -22,6 +22,8 @@ let package = Package(
         .package(url: "https://github.com/braze-inc/braze-swift-sdk", exact: "14.0.1"),
         .package(url: "https://github.com/braintree/braintree_ios", from: "7.5.0"),
         .package(url: "https://github.com/facebook/facebook-ios-sdk", from: "18.0.3"),
+        // Keep this version to cover https://github.com/bazelbuild/rules_apple/issues/3097.
+        .package(url: "https://github.com/getyoti/yoti-doc-scan-ios.git", exact: "7.0.0"),
         .package(url: "https://github.com/google/GoogleAppMeasurement", from: "12.14.0"),
         .package(url: "https://github.com/google/gtm-session-fetcher", from: "3.5.0"),
         .package(url: "https://github.com/google/GTMAppAuth", from: "5.0.0"),

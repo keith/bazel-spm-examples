@@ -36,6 +36,12 @@ swift_deps.configure_package(
     name = "swiftpkg_reveal_sdk",
     build_file = "//patches:reveal_sdk.BUILD.bazel",
 )
+swift_deps.configure_package(
+    name = "swiftpkg_yoti_doc_scan_ios",
+    target_deps = {
+        "YotiDocumentScan": [":Microblink"],
+    },
+)
 
 include("//:deps.MODULE.bazel")
 
@@ -68,6 +74,7 @@ use_repo(
     "swiftpkg_swift_perception",
     "swiftpkg_swift_snapshot_testing",
     "swiftpkg_swift_syntax",
+    "swiftpkg_yoti_doc_scan_ios",
 )
 
 http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")

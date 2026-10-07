@@ -413,6 +413,15 @@
         "revision" : "dfd70507def84cb5fb821278448a262c6ff2bbad",
         "version" : "1.9.0"
       }
+    },
+    {
+      "identity" : "yoti-doc-scan-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/getyoti/yoti-doc-scan-ios.git",
+      "state" : {
+        "revision" : "7c95b87cb4d5db30a7f0d442dd088e2f8ad4e620",
+        "version" : "7.0.0"
+      }
     }
   ],
   "version" : 2
