@@ -588,12 +588,12 @@
     "@@rules_swift_package_manager+//:extensions.bzl%swift_deps": {
       "general": {
         "bzlTransitiveDigest": "WLqoi29c8XUgPo7uYa9ChpMJhaZvAJGvgjQ0kAg4bKs=",
-        "usagesDigest": "4Q4brIUtBiDdwjpivoEZPOBqo0egDlNkFKKVHYBxEpg=",
+        "usagesDigest": "vhk5lTZljr0ujx6s6jcl2qj4ETqfiIUCLj3PpB2sdVY=",
         "recordedInputs": [
           "REPO_MAPPING:rules_swift_package_manager+,bazel_skylib bazel_skylib+",
           "REPO_MAPPING:rules_swift_package_manager+,bazel_tools bazel_tools",
           "REPO_MAPPING:rules_swift_package_manager+,cgrindel_bazel_starlib cgrindel_bazel_starlib+",
-          "FILE:@@//Package.resolved 409389b8f08f31fa7c8151db5648460251fd35c907e310f67c7d75076fb5f996"
+          "FILE:@@//Package.resolved ee555f15d4e38359c3386bd91f6ccdfee9340928b2be29545615d87ec2622c61"
         ],
         "generatedRepoSpecs": {
           "swift_deps_info": {
@@ -615,6 +615,7 @@
                 "@swiftpkg_braze_swift_sdk//:pkg_info.json": "braze-swift-sdk",
                 "@swiftpkg_braintree_ios//:pkg_info.json": "braintree_ios",
                 "@swiftpkg_facebook_ios_sdk//:pkg_info.json": "facebook-ios-sdk",
+                "@swiftpkg_yoti_doc_scan_ios//:pkg_info.json": "yoti-doc-scan-ios",
                 "@swiftpkg_googleappmeasurement//:pkg_info.json": "googleappmeasurement",
                 "@swiftpkg_gtm_session_fetcher//:pkg_info.json": "gtm-session-fetcher",
                 "@swiftpkg_gtmappauth//:pkg_info.json": "gtmappauth",
@@ -872,6 +873,34 @@
                 "FBSDKShareKit": [
                   ":FBSDKCoreKit",
                   ":FBSDKCoreKit_Basics"
+                ]
+              }
+            }
+          },
+          "swiftpkg_yoti_doc_scan_ios": {
+            "repoRuleId": "@@rules_swift_package_manager+//swiftpkg/internal:swift_package.bzl%swift_package",
+            "attributes": {
+              "bazel_package_name": "swiftpkg_yoti_doc_scan_ios",
+              "commit": "7c95b87cb4d5db30a7f0d442dd088e2f8ad4e620",
+              "remote": "https://github.com/getyoti/yoti-doc-scan-ios.git",
+              "version": "7.0.0",
+              "env": {},
+              "env_inherit": [],
+              "cached_json_directory": "",
+              "init_submodules": false,
+              "recursive_init_submodules": true,
+              "patch_args": [
+                "-p0"
+              ],
+              "patch_cmds": [],
+              "patch_cmds_win": [],
+              "patch_tool": "",
+              "patches": [],
+              "publicly_expose_all_targets": false,
+              "replace_scm_with_registry": false,
+              "target_deps": {
+                "YotiDocumentScan": [
+                  ":Microblink"
                 ]
               }
             }
@@ -1425,6 +1454,7 @@
             "swiftpkg_braze_swift_sdk",
             "swiftpkg_braintree_ios",
             "swiftpkg_facebook_ios_sdk",
+            "swiftpkg_yoti_doc_scan_ios",
             "swiftpkg_googleappmeasurement",
             "swiftpkg_gtm_session_fetcher",
             "swiftpkg_gtmappauth",
