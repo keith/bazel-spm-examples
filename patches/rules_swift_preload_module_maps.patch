@@ -1,0 +1,100 @@
+diff --git a/swift/internal/feature_names.bzl b/swift/internal/feature_names.bzl
+--- a/swift/internal/feature_names.bzl
++++ b/swift/internal/feature_names.bzl
+@@ -164,6 +164,10 @@
+ # the workspace, not to the modulemap file location. Paths in the module maps
+ # themselves will still be treated as modulemap-relative.
+ SWIFT_FEATURE_MODULE_HOME_IS_CWD = "swift.module_home_is_cwd"
++
++# Preload textual module maps before reading workspace-relative PCMs, working
++# around Clang's missing module directory crash in Xcode 27.
++SWIFT_FEATURE__PRELOAD_C_MODULE_MAPS = "swift._preload_c_module_maps"
+ 
+ # If enabled, compilation actions and module map generation will assume that the
+ # header paths in module maps are relative to the current working directory
+diff --git a/swift/toolchains/config/compile_config.bzl b/swift/toolchains/config/compile_config.bzl
+--- a/swift/toolchains/config/compile_config.bzl
++++ b/swift/toolchains/config/compile_config.bzl
+@@ -91,6 +91,7 @@
+     "SWIFT_FEATURE_USE_PCH_OUTPUT_DIR",
+     "SWIFT_FEATURE__COVERAGE_PREFIX_MAP_ABSOLUTE_SOURCES_NON_HERMETIC",
+     "SWIFT_FEATURE__NUM_THREADS_0_IN_SWIFTCOPTS",
++    "SWIFT_FEATURE__PRELOAD_C_MODULE_MAPS",
+     "SWIFT_FEATURE__SUPPORTS_DEVELOPER_DIR",
+     "SWIFT_FEATURE__SUPPORTS_HERMETIC_SWIFTMODULE",
+     "SWIFT_FEATURE__WMO_IN_SWIFTCOPTS",
+@@ -735,6 +736,23 @@
+                 add_arg("-Xcc", "-fmodule-map-file-home-is-cwd"),
+             ],
+             features = [SWIFT_FEATURE_MODULE_MAP_HOME_IS_CWD],
++        ),
++
++        # Workaround https://github.com/llvm/llvm-project/pull/218011
++        ActionConfigInfo(
++            actions = all_compile_action_names() + [
++                SWIFT_ACTION_COMPILE_MODULE_INTERFACE,
++                SWIFT_ACTION_DUMP_AST,
++                SWIFT_ACTION_PRECOMPILE_C_MODULE,
++                SWIFT_ACTION_SYMBOL_GRAPH_EXTRACT,
++                SWIFT_ACTION_SYNTHESIZE_INTERFACE,
++            ],
++            configurators = [_preload_clang_modulemaps_configurator],
++            features = [
++                SWIFT_FEATURE_USE_C_MODULES,
++                SWIFT_FEATURE_MODULE_HOME_IS_CWD,
++                SWIFT_FEATURE__PRELOAD_C_MODULE_MAPS,
++            ],
+         ),
+ 
+         # Configure how implicit modules are handled--either using the module
+@@ -1935,6 +1953,28 @@
+ def _clang_module_dependency_args_include_system(module):
+     return _clang_module_dependency_args(module, ignore_system = False)
+ 
++def _preload_clang_modulemaps_configurator(prerequisites, args):
++    """Establishes directories for PCMs before Swift's explicit module loader."""
++    modules = [
++        module
++        for module in prerequisites.transitive_modules
++        if module.clang and module.clang.precompiled_module
++    ]
++    args.add_all(
++        modules,
++        before_each = "-Xcc",
++        map_each = _clang_modulemap_dependency_args_include_system,
++        uniquify = True,
++    )
++    return ConfigResultInfo(inputs = [
++        module.clang.module_map
++        for module in modules
++        if type(module.clang.module_map) == "File"
++    ])
++
++def _clang_modulemap_dependency_args_include_system(module):
++    return _clang_modulemap_dependency_args(module, ignore_system = False)
++
+ def _dependencies_clang_modulemaps_configurator(prerequisites, args):
+     """Configures Clang module maps from dependencies."""
+     modules = [
+diff --git a/swift/toolchains/xcode_swift_toolchain.bzl b/swift/toolchains/xcode_swift_toolchain.bzl
+--- a/swift/toolchains/xcode_swift_toolchain.bzl
++++ b/swift/toolchains/xcode_swift_toolchain.bzl
+@@ -59,6 +59,7 @@
+     "SWIFT_FEATURE_REMAP_XCODE_PATH",
+     "SWIFT_FEATURE_STATIC_STDLIB",
+     "SWIFT_FEATURE_USE_C_MODULES",
++    "SWIFT_FEATURE__PRELOAD_C_MODULE_MAPS",
+     "SWIFT_FEATURE__SUPPORTS_DEVELOPER_DIR",
+     "SWIFT_FEATURE__SUPPORTS_HERMETIC_SWIFTMODULE",
+ )
+@@ -864,6 +865,10 @@
+     if _is_xcode_at_least_version(xcode_config, "26.4"):
+         requested_features.append(SWIFT_FEATURE__SUPPORTS_HERMETIC_SWIFTMODULE)
+ 
++    if _is_xcode_at_least_version(xcode_config, "27.0"):
++        # TODO: Restrict this once Xcode contains https://github.com/llvm/llvm-project/pull/218011
++        requested_features.append(SWIFT_FEATURE__PRELOAD_C_MODULE_MAPS)
++
+     # Xcode toolchains always support DEVELOPER_DIR
+     requested_features.append(SWIFT_FEATURE__SUPPORTS_DEVELOPER_DIR)
+ 
