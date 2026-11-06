@@ -14,7 +14,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-nio", from: "2.70.0"),
         .package(url: "https://github.com/swiftlang/swift-syntax", from: "601.0.0"),
 
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.15.0"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.26.1"),
         .package(url: "https://github.com/pointfreeco/swift-perception", from: "1.3.0"),
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", "1.18.0"..<"1.19.0"),
 

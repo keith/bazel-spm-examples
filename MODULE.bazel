@@ -3,12 +3,12 @@ module(
     version = "0.0.0",
 )
 
-bazel_dep(name = "apple_support", version = "2.6.1")
+bazel_dep(name = "apple_support", version = "2.11.0")
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "platforms", version = "1.1.0")
-bazel_dep(name = "rules_apple", version = "5.0.0-rc2")
-bazel_dep(name = "rules_cc", version = "0.2.19")
-bazel_dep(name = "rules_swift", version = "4.0.0-rc3")
+bazel_dep(name = "rules_apple", version = "5.4.0")
+bazel_dep(name = "rules_cc", version = "0.2.26")
+bazel_dep(name = "rules_swift", version = "4.2.2")
 bazel_dep(name = "rules_swift_package_manager", version = "1.19.0")
 
 bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.9.0", dev_dependency = True)
@@ -16,7 +16,52 @@ bazel_dep(name = "gazelle", version = "0.51.3", dev_dependency = True)
 bazel_dep(name = "swift_gazelle_plugin", version = "0.2.2", dev_dependency = True)
 
 system_sdk = use_extension("@rules_swift//swift:extensions.bzl", "system_sdk")
-system_sdk.configure_sdks(include_all = True)
+system_sdk.configure_sdks(
+    # NOTE: This doesn't apply to downstream repos
+    exclude_modules = {
+        "MacOSX": [
+            "MobileGestaltPrivate",
+        ],
+        "AppleTVOS": [
+            "MobileGestaltPrivate",
+            # Xcode 27.2 ships these overlays without their tvOS dependencies.
+            "_AppIntents_HealthKit",
+            "_Contacts_AppIntents",
+        ],
+        "AppleTVSimulator": [
+            "CoreAudio_Private",  # Also excluded by the upstream scanner defaults.
+            "MobileGestaltPrivate",
+            # Xcode 27.2 ships these overlays without their tvOS dependencies.
+            "_AppIntents_HealthKit",
+            "_Contacts_AppIntents",
+        ],
+        "iPhoneSimulator": [
+            "CoreAudio_Private",
+            "MobileGestaltPrivate",
+        ],
+        "iPhoneOS": [
+            "MobileGestaltPrivate",
+        ],
+        "XROS": [
+            "AccessoryTransportExtension",
+            "MobileGestaltPrivate",
+        ],
+        "XRSimulator": [
+            "AccessoryTransportExtension",
+            "MobileGestaltPrivate",
+        ],
+        "WatchOS": [
+            "BrowserEngineKit",
+            "MobileGestaltPrivate",
+        ],
+        "WatchSimulator": [
+            "BrowserEngineKit",
+            "CoreAudio_Private",  # Also excluded by the upstream scanner defaults.
+            "MobileGestaltPrivate",
+        ],
+    },
+    include_all = True,
+)
 use_repo(system_sdk, "system_sdk")
 
 swift_deps = use_extension(
@@ -86,15 +131,6 @@ apple_dynamic_xcframework_import(
     sha256 = "0dae35ca7542486a4186598394eb9b0d3ebe8402cedf5846af19cc44b89c9fb6",
     urls = [
         "https://github.com/getsentry/sentry-cocoa/releases/download/9.13.0/Sentry-Dynamic.xcframework.zip",
-    ],
-)
-
-archive_override(
-    module_name = "rules_swift",
-    integrity = "sha256-HZUbHlWbieQMp9cDuwdvKuLSGhSSG8MqrTS2GEkGhyA=",
-    strip_prefix = "rules_swift-f765fda9083bc88c74c47f48b496d32664445e28",
-    urls = [
-        "https://github.com/bazelbuild/rules_swift/archive/f765fda9083bc88c74c47f48b496d32664445e28.tar.gz",
     ],
 )
 
