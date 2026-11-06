@@ -610,7 +610,7 @@
           "REPO_MAPPING:rules_swift_package_manager+,bazel_skylib bazel_skylib+",
           "REPO_MAPPING:rules_swift_package_manager+,bazel_tools bazel_tools",
           "REPO_MAPPING:rules_swift_package_manager+,cgrindel_bazel_starlib cgrindel_bazel_starlib+",
-          "FILE:@@//Package.resolved fc3d4047de8e6890dcf248f235b556499b4d109b05eadbd72ea7d8776f79e493"
+          "FILE:@@//Package.resolved 2e888bd6ae397abe0af0b2aa4fbccb59417d1dfac500b1a219271d2af2463b8d"
         ],
         "generatedRepoSpecs": {
           "swift_deps_info": {
