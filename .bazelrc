@@ -8,6 +8,11 @@ common --flag_alias=host_swiftcopt=@rules_swift//swift:exec_copt
 build --swiftcopt=-Xcc --swiftcopt=-Werror
 build --features=treat_warnings_as_errors
 
+# Yoti's bundled Microblink SDK has deprecated declarations and an incomplete
+# umbrella header. Leave these two Clang diagnostics as warnings so it compiles.
+build --swiftcopt=-Xcc --swiftcopt=-Wno-error=deprecated-declarations
+build --swiftcopt=-Xcc --swiftcopt=-Wno-error=incomplete-umbrella
+
 # Build perf for SwiftSyntax, shouldn't affect other things
 build --swiftcopt=-wmo --swiftcopt=-wmo
 
